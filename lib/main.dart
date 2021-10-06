@@ -16,18 +16,30 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      navigatorKey: StackedService.navigatorKey,
-      onGenerateRoute: StackedRouter().onGenerateRoute,
-      theme: ThemeData(
-        scaffoldBackgroundColor: kPrimaryColor,
-        backgroundColor: kPrimaryColor,
-        primaryColor: kSecondryColor,
-        textTheme: const TextTheme(
-          headline1: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-          headline2: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          bodyText1: TextStyle(fontWeight: FontWeight.normal, fontSize: 17.5),
+    return GestureDetector(
+      //unfocus input field upon click outside its boundries
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus!.unfocus();
+        }
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        //unfocus input field upon click outside its boundries
+
+        navigatorKey: StackedService.navigatorKey,
+        onGenerateRoute: StackedRouter().onGenerateRoute,
+        theme: ThemeData(
+          scaffoldBackgroundColor: kPrimaryColor,
+          backgroundColor: kPrimaryColor,
+          primaryColor: kSecondryColor,
+          textTheme: const TextTheme(
+            headline1: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+            headline2: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            bodyText1: TextStyle(fontWeight: FontWeight.normal, fontSize: 17.5),
+          ),
         ),
       ),
     );
