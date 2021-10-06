@@ -1,5 +1,6 @@
-import 'package:bike_riders/core/app/constants.dart';
 import 'package:flutter/material.dart';
+
+import 'package:bike_riders/core/app/constants.dart';
 
 class AuthenticationInstruction extends StatelessWidget {
   final String hintText;

@@ -5,12 +5,12 @@ class InputField extends StatefulWidget {
   final String hint;
   final void Function(String) validator;
   final bool obscureText;
-  const InputField(
-      {Key? key,
-      this.hint = "",
-      required this.validator,
-      this.obscureText = false})
-      : super(key: key);
+  const InputField({
+    Key? key,
+    this.hint = "",
+    required this.validator,
+    this.obscureText = false,
+  }) : super(key: key);
 
   @override
   _InputFieldState createState() => _InputFieldState();
@@ -22,7 +22,7 @@ class _InputFieldState extends State<InputField> {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+      margin: const EdgeInsets.symmetric(vertical: kDefaultPadding / 1.5),
       width: size.width * 0.8,
       decoration: BoxDecoration(
         boxShadow: [

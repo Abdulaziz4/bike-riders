@@ -1,3 +1,4 @@
+import 'package:bike_riders/ui/auth/signup/signup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -9,6 +10,7 @@ import 'package:bike_riders/ui/startup/startup_view.dart';
   routes: [
     MaterialRoute(page: StartupView, initial: true),
     MaterialRoute(page: LoginView),
+    MaterialRoute(page: SignupView),
   ],
   dependencies: [
     LazySingleton(classType: AuthService),
