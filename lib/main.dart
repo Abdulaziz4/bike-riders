@@ -1,8 +1,13 @@
+import 'package:bike_riders/core/app/app.locator.dart';
 import 'package:bike_riders/core/app/app.router.dart';
+import 'package:bike_riders/core/app/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 void main() {
+  setupLocator();
+
   runApp(const MyApp());
 }
 
@@ -12,17 +17,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Bike Riders"),
-        ),
-        body: const Center(
-          child: Text("Welcome to Bike Riders"),
+        scaffoldBackgroundColor: kPrimaryColor,
+        backgroundColor: kPrimaryColor,
+        primaryColor: kSecondryColor,
+        textTheme: const TextTheme(
+          headline1: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+          headline2: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          bodyText1: TextStyle(fontWeight: FontWeight.normal, fontSize: 17.5),
         ),
       ),
     );
