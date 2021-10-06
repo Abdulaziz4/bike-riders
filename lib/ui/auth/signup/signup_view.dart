@@ -36,8 +36,8 @@ class SignupView extends StatelessWidget {
           CustomButton(
             text: "Create Account",
             onPress: () {},
-            size: const Size(140, 42),
-            textStyle: kLargeText,
+            size: const Size(200, 50),
+            textStyle: TextStyle(fontSize: 19.5),
           ),
           Spacer(),
           AuthenticationInstruction(
