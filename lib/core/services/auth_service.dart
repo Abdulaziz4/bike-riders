@@ -28,12 +28,12 @@ class AuthService {
       _logger.i("loginWithEmail successfuly logged in");
       return success;
     } on FirebaseAuthException catch (exp) {
-      _logger
-          .e("Failed with error code: ${exp.code} , Message: ${exp.message}");
+      _logger.e(
+          "loginWithEmail | Failed with error code: ${exp.code} , Message: ${exp.message}");
       throw AuthException(exp.code);
     } catch (e) {
-      _logger.e('Failed with error code: $e , Message: $e');
-      throw e;
+      _logger.e('loginWithEmail Failed with error code: $e , Message: $e');
+      rethrow;
     }
   }
 
@@ -50,11 +50,13 @@ class AuthService {
 
       return success;
     } on FirebaseAuthException catch (exp) {
-      print('Failed with error code: ${exp.code} , Message: ${exp.message}');
+      _logger.e(
+          'signUpWithEmail | Failed with error code: ${exp.code} , Message: ${exp.message}');
       throw AuthException(exp.code);
     } catch (exp) {
-      print('Failed with error code: $exp , Message: $exp');
-      throw exp;
+      _logger
+          .e('signUpWithEmail | Failed with error Message: ${exp.toString()}');
+      rethrow;
     }
   }
 }

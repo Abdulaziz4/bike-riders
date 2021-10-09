@@ -4,35 +4,23 @@ class AuthException implements Exception {
   String get message {
     switch (code) {
       case "email-already-in-use":
-        return "الايميل المدخل مستخدم سابقاً";
+        return "Email is already used.";
 
       case "invalid-email":
-        return "الايميل غير صالح";
+        return "Email is invalid.";
 
       case "operation-not-allowed":
-        return "حدث خطأ ما، الرجاء المحاولة لاحقاً";
+        return "Something went wrong, please try again.";
 
       case "weak-password":
-        return "كلمة السر ضعيفة";
-
-      case "invalid-email":
-        return "";
+        return "Week password.";
 
       case "wrong-password":
-        return "البريد الالكتروني أو الرقم السري غير صحيح";
-
       case "user-not-found":
-        return "البريد الالكتروني أو الرقم السري غير صحيح";
+        return "Wrong email or password.";
 
       case "user-disabled":
-        return "هذا الحساب غير مفعل";
-
-      case "invalid-action-code":
-        return "الكود المدخل غير صالح";
-
-      case "expired-action-code":
-        return "الكود المدخل منهي الصلاحية";
-
+        return "Account is disabled.";
       default:
         return "حدث خطأ ما، الرجاء المحاولة لاحقاً";
     }
