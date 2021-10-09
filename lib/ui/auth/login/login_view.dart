@@ -1,3 +1,4 @@
+import 'package:bike_riders/core/app/utils/validator.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bike_riders/core/app/constants.dart';
@@ -23,12 +24,14 @@ class _LoginViewState extends State<LoginView> {
           Spacer(),
           InputField(
             hint: "Email",
-            validator: (_) {},
+            validator: Validator.emailValidator,
+            onSave: (_) {},
           ),
           InputField(
             hint: "Password",
-            validator: (_) {},
             obscureText: true,
+            validator: Validator.passwordValidator,
+            onSave: (_) {},
           ),
           SizedBox(
             height: kDefaultPadding * 2,
@@ -40,7 +43,7 @@ class _LoginViewState extends State<LoginView> {
             textStyle: kLargeText,
           ),
           Spacer(),
-          AuthenticationInstruction(
+          AuthenticationInstructions(
             buttonText: "Create Account",
             hintText: "Don't have an account ?",
             onPressed: () {},

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:bike_riders/core/app/constants.dart';
 
-class AuthenticationInstruction extends StatelessWidget {
+class AuthenticationInstructions extends StatelessWidget {
   final String hintText;
   final String buttonText;
   final void Function() onPressed;
-  const AuthenticationInstruction({
+  const AuthenticationInstructions({
     Key? key,
     required this.buttonText,
     required this.hintText,

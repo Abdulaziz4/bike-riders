@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 
 class InputField extends StatefulWidget {
   final String hint;
-  final void Function(String) validator;
+  final String? Function(String?) validator;
+  final void Function(String) onSave;
   final bool obscureText;
+  final TextEditingController? controller;
   const InputField({
     Key? key,
     this.hint = "",
     required this.validator,
     this.obscureText = false,
+    this.controller,
+    required this.onSave,
   }) : super(key: key);
 
   @override
@@ -34,8 +38,14 @@ class _InputFieldState extends State<InputField> {
         ],
       ),
       child: TextFormField(
+        controller: widget.controller,
         obscureText: widget.obscureText,
-        onChanged: (_) {},
+        onSaved: (value) {
+          if (value != null) {
+            widget.onSave(value);
+          }
+        },
+        validator: widget.validator,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           hintText: widget.hint,
