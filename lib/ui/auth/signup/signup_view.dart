@@ -1,4 +1,3 @@
-import 'package:bike_riders/ui/shared/busy_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -9,6 +8,8 @@ import 'package:bike_riders/ui/shared/custom_button.dart';
 import 'package:bike_riders/ui/shared/input_field.dart';
 import 'package:bike_riders/core/app/utils/validator.dart';
 import 'package:bike_riders/ui/auth/signup/signup_viewmodel.dart';
+import 'package:bike_riders/ui/shared/auth_error_message.dart';
+import 'package:bike_riders/ui/shared/busy_overlay.dart';
 
 class SignupView extends StatefulWidget {
   const SignupView({Key? key}) : super(key: key);
@@ -70,6 +71,7 @@ class _SignupViewState extends State<SignupView> {
                 SizedBox(
                   height: kDefaultPadding * 2,
                 ),
+                AuthErrorMessage(message: viewmodel.errorMessage),
                 CustomButton(
                   text: "Create Account",
                   onPress: viewmodel.validateAndSubmitForm,
@@ -78,9 +80,9 @@ class _SignupViewState extends State<SignupView> {
                 ),
                 Spacer(),
                 AuthenticationInstructions(
-                  buttonText: "Create Account",
-                  hintText: "Don't have an account ?",
-                  onPressed: () {},
+                  buttonText: "Log in",
+                  hintText: "Already have an account ?",
+                  onPressed: viewmodel.navigateToLogin,
                 ),
               ],
             ),
