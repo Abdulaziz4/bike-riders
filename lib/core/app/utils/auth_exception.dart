@@ -22,7 +22,7 @@ class AuthException implements Exception {
       case "user-disabled":
         return "Account is disabled.";
       default:
-        return "حدث خطأ ما، الرجاء المحاولة لاحقاً";
+        return "Something went wrong, please try again.";
     }
   }
 }

@@ -7,7 +7,7 @@ import 'package:bike_riders/ui/shared/authentication_instructions.dart';
 import 'package:bike_riders/ui/shared/custom_button.dart';
 import 'package:bike_riders/ui/shared/input_field.dart';
 import 'package:bike_riders/core/app/utils/validator.dart';
-import 'package:bike_riders/ui/auth/signup/signup_viewmodel.dart';
+import 'package:bike_riders/ui/auth/auth_viewmodel.dart';
 import 'package:bike_riders/ui/shared/auth_error_message.dart';
 import 'package:bike_riders/ui/shared/busy_overlay.dart';
 
@@ -34,8 +34,8 @@ class _SignupViewState extends State<SignupView> {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<SignupViewModel>.reactive(
-      viewModelBuilder: () => SignupViewModel(),
+    return ViewModelBuilder<AuthViewModel>.reactive(
+      viewModelBuilder: () => AuthViewModel(),
       builder: (context, viewmodel, _) => BusyOverlay(
         isBusy: viewmodel.isBusy,
         child: Scaffold(
@@ -74,7 +74,7 @@ class _SignupViewState extends State<SignupView> {
                 AuthErrorMessage(message: viewmodel.errorMessage),
                 CustomButton(
                   text: "Create Account",
-                  onPress: viewmodel.validateAndSubmitForm,
+                  onPress: viewmodel.validateAndSubmitSignupForm,
                   size: const Size(200, 50),
                   textStyle: TextStyle(fontSize: 19.5),
                 ),

@@ -15,7 +15,7 @@ class AuthErrorMessage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Text(
         message ?? "",
-        style: kSmallText.copyWith(color: kRedColor),
+        style: kSmallText.copyWith(color: Colors.red),
       ),
     );
   }

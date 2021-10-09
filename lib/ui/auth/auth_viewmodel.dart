@@ -7,7 +7,7 @@ import 'package:bike_riders/core/app/app.router.dart';
 import 'package:bike_riders/core/app/utils/auth_exception.dart';
 import 'package:bike_riders/core/services/auth_service.dart';
 
-class SignupViewModel extends BaseViewModel {
+class AuthViewModel extends BaseViewModel {
   final _authService = locator<AuthService>();
   final _navService = locator<NavigationService>();
 
@@ -18,10 +18,16 @@ class SignupViewModel extends BaseViewModel {
 
   final formKey = GlobalKey<FormState>();
 
-  Future<void> signup() async {
+  Future<void> _authenticate(
+    Future<void> Function({
+      required String email,
+      required String password,
+    })
+        request,
+  ) async {
     try {
       setBusy(true);
-      await _authService.signUpWithEmail(
+      await request(
         email: _email!,
         password: _password!,
       );
@@ -35,13 +41,29 @@ class SignupViewModel extends BaseViewModel {
     }
   }
 
-  void validateAndSubmitForm() {
+  void _validateAndSubmitForm(void Function() onValidForm) {
     final isValid = formKey.currentState!.validate();
 
     if (isValid) {
       formKey.currentState!.save();
-      signup();
+      onValidForm();
     }
+  }
+
+  void validateAndSubmitLoginForm() {
+    _validateAndSubmitForm(login);
+  }
+
+  void validateAndSubmitSignupForm() {
+    _validateAndSubmitForm(signup);
+  }
+
+  void signup() {
+    _authenticate(_authService.signUpWithEmail);
+  }
+
+  void login() {
+    _authenticate(_authService.loginWithEmail);
   }
 
   void setEmail(String email) {
@@ -59,5 +81,9 @@ class SignupViewModel extends BaseViewModel {
 
   void navigateToLogin() {
     _navService.replaceWith(Routes.loginView);
+  }
+
+  void navigateToSignup() {
+    _navService.replaceWith(Routes.signupView);
   }
 }

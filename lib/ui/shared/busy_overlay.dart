@@ -30,9 +30,9 @@ class _BusyOverlayState extends State<BusyOverlay> {
           opacity: 0.65,
         ),
         Center(
-          child: SpinKitDancingSquare(
+          child: SpinKitWave(
             color: kAltColor,
-            size: 80,
+            type: SpinKitWaveType.start,
           ),
         ),
       ],
