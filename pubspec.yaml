@@ -39,7 +39,7 @@ dependencies:
   cloud_firestore: ^2.5.3
   stacked_services: ^0.8.13
   flutter_svg: ^0.22.0
-
+  flutter_spinkit: ^5.1.0
   logger: ^1.1.0
 dev_dependencies:
   flutter_test:

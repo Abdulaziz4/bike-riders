@@ -1,11 +1,11 @@
 class Validator {
   static String? emailValidator(String? email) {
     if (email == null || email.isEmpty) {
-      return "الرجاء ادخال بريد الكتروني";
+      return "Please enter an email.";
     } else if (!RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email)) {
-      return "الرجاء التأكد من البريد الالكتروني";
+      return "Please enter a valid email.";
     }
     return null;
   }
@@ -13,9 +13,9 @@ class Validator {
   static String? passwordValidator(String? pass) {
     {
       if (pass == null || pass.isEmpty) {
-        return "الرجاء ادخال كلمة مرور";
+        return "Please enter a password.";
       } else if (pass.length < 8) {
-        return "الرجاء ادخال كلمة مرور أكثر من ٨ حروف";
+        return "Password should be at least 8 characters.";
       }
       return null;
     }
@@ -29,9 +29,9 @@ class Validator {
       final isValid = Validator.passwordValidator(confirmPassword);
       if (isValid == null) {
         final isMatched = pass == confirmPassword;
-        return isMatched ? null : "تأكد من مطابقة كلمة السر";
+        return isMatched ? null : "Password doesn't match.";
       }
-      return null;
+      return isValid;
     }
   }
 }

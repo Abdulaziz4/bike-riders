@@ -65,6 +65,20 @@ class _InputFieldState extends State<InputField> {
             ),
             borderRadius: BorderRadius.circular(7.0),
           ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.red,
+              width: 1.5,
+            ),
+            borderRadius: BorderRadius.circular(7.0),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: kRedColor,
+              width: 1.5,
+            ),
+            borderRadius: BorderRadius.circular(7.0),
+          ),
         ),
       ),
     );

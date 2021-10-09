@@ -8,13 +8,13 @@ class SignupViewModel extends BaseViewModel {
 
   final formKey = GlobalKey<FormState>();
 
-  Future<void> signup(String email, String password) async {
+  Future<void> signup() async {
     try {
       setBusy(true);
     } on AuthException catch (exp) {
     } catch (e) {
     } finally {
-      setBusy(false);
+      // setBusy(false);
     }
   }
 
@@ -22,6 +22,7 @@ class SignupViewModel extends BaseViewModel {
     final isValid = formKey.currentState!.validate();
     if (isValid) {
       formKey.currentState!.save();
+      signup();
     }
   }
 

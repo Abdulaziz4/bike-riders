@@ -1,3 +1,4 @@
+import 'package:bike_riders/ui/shared/busy_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -34,52 +35,55 @@ class _SignupViewState extends State<SignupView> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignupViewModel>.reactive(
       viewModelBuilder: () => SignupViewModel(),
-      builder: (context, viewmodel, _) => Scaffold(
-        body: Form(
-          key: viewmodel.formKey,
-          child: Column(
-            children: [
-              AuthenticationHeader(text: "Create\nAccount"),
-              Spacer(),
-              InputField(
-                hint: "Email",
-                validator: Validator.emailValidator,
-                onSave: (_) {},
-              ),
-              InputField(
-                hint: "Password",
-                obscureText: true,
-                validator: Validator.passwordValidator,
-                controller: _controller,
-                onSave: (_) {},
-              ),
-              InputField(
-                hint: "Confirm Password",
-                validator: (cPass) {
-                  return Validator.confirmPasswordValidator(
-                    cPass,
-                    _controller.text,
-                  );
-                },
-                obscureText: true,
-                onSave: (_) {},
-              ),
-              SizedBox(
-                height: kDefaultPadding * 2,
-              ),
-              CustomButton(
-                text: "Create Account",
-                onPress: viewmodel.validateAndSubmitForm,
-                size: const Size(200, 50),
-                textStyle: TextStyle(fontSize: 19.5),
-              ),
-              Spacer(),
-              AuthenticationInstructions(
-                buttonText: "Create Account",
-                hintText: "Don't have an account ?",
-                onPressed: () {},
-              ),
-            ],
+      builder: (context, viewmodel, _) => BusyOverlay(
+        isBusy: viewmodel.isBusy,
+        child: Scaffold(
+          body: Form(
+            key: viewmodel.formKey,
+            child: Column(
+              children: [
+                AuthenticationHeader(text: "Create\nAccount"),
+                Spacer(),
+                InputField(
+                  hint: "Email",
+                  validator: Validator.emailValidator,
+                  onSave: viewmodel.setEmail,
+                ),
+                InputField(
+                  hint: "Password",
+                  obscureText: true,
+                  validator: Validator.passwordValidator,
+                  controller: _controller,
+                  onSave: viewmodel.setPassword,
+                ),
+                InputField(
+                  hint: "Confirm Password",
+                  validator: (cPass) {
+                    return Validator.confirmPasswordValidator(
+                      _controller.text,
+                      cPass,
+                    );
+                  },
+                  obscureText: true,
+                  onSave: (_) {},
+                ),
+                SizedBox(
+                  height: kDefaultPadding * 2,
+                ),
+                CustomButton(
+                  text: "Create Account",
+                  onPress: viewmodel.validateAndSubmitForm,
+                  size: const Size(200, 50),
+                  textStyle: TextStyle(fontSize: 19.5),
+                ),
+                Spacer(),
+                AuthenticationInstructions(
+                  buttonText: "Create Account",
+                  hintText: "Don't have an account ?",
+                  onPressed: () {},
+                ),
+              ],
+            ),
           ),
         ),
       ),
