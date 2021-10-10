@@ -9,6 +9,6 @@ class StartupViewModel extends BaseViewModel {
   void initlizeApp() async {
     //Do initlizations here
     await Firebase.initializeApp();
-    _navigationService.replaceWith(Routes.signupView);
+    _navigationService.replaceWith(Routes.onBoardingView);
   }
 }
