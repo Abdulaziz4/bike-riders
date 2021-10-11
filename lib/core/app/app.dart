@@ -1,6 +1,7 @@
 import 'package:bike_riders/ui/auth/onboarding/onboarding_view.dart';
 import 'package:bike_riders/ui/auth/signup/signup_view.dart';
 import 'package:bike_riders/ui/groups/groups_view.dart';
+import 'package:bike_riders/ui/nav_bar/navigation_bar.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -12,6 +13,7 @@ import 'package:bike_riders/ui/startup/startup_view.dart';
   routes: [
     MaterialRoute(page: StartupView, initial: true),
     MaterialRoute(page: OnBoardingView),
+    MaterialRoute(page: NavigationBarController),
     MaterialRoute(page: LoginView),
     MaterialRoute(page: SignupView),
     MaterialRoute(page: GroupsView),

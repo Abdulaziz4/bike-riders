@@ -42,6 +42,7 @@ class AuthViewModel extends BaseViewModel {
   }
 
   void _validateAndSubmitForm(void Function() onValidForm) {
+    clearError();
     final isValid = formKey.currentState!.validate();
 
     if (isValid) {

@@ -54,13 +54,13 @@ class _InputFieldState extends State<InputField> {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(7),
             borderSide: BorderSide(
-              color: kSecondryColor,
+              color: kAltColor,
               width: 1.5,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: kAltColor,
+              color: kSecondryColor,
               width: 1.5,
             ),
             borderRadius: BorderRadius.circular(7.0),

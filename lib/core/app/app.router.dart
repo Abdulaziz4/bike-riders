@@ -14,17 +14,20 @@ import '../../ui/auth/login/login_view.dart';
 import '../../ui/auth/onboarding/onboarding_view.dart';
 import '../../ui/auth/signup/signup_view.dart';
 import '../../ui/groups/groups_view.dart';
+import '../../ui/nav_bar/navigation_bar.dart';
 import '../../ui/startup/startup_view.dart';
 
 class Routes {
   static const String startupView = '/';
   static const String onBoardingView = '/on-boarding-view';
+  static const String navigationBarController = '/navigation-bar-controller';
   static const String loginView = '/login-view';
   static const String signupView = '/signup-view';
   static const String groupsView = '/groups-view';
   static const all = <String>{
     startupView,
     onBoardingView,
+    navigationBarController,
     loginView,
     signupView,
     groupsView,
@@ -37,6 +40,7 @@ class StackedRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.startupView, page: StartupView),
     RouteDef(Routes.onBoardingView, page: OnBoardingView),
+    RouteDef(Routes.navigationBarController, page: NavigationBarController),
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.signupView, page: SignupView),
     RouteDef(Routes.groupsView, page: GroupsView),
@@ -53,6 +57,12 @@ class StackedRouter extends RouterBase {
     OnBoardingView: (data) {
       return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const OnBoardingView(),
+        settings: data,
+      );
+    },
+    NavigationBarController: (data) {
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
+        builder: (context) => const NavigationBarController(),
         settings: data,
       );
     },

@@ -1,14 +1,20 @@
 import 'package:bike_riders/core/app/utils/auth_exception.dart';
 import 'package:bike_riders/core/app/utils/logger.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:stacked/stacked.dart';
 
-class AuthService {
+class AuthService with ReactiveServiceMixin {
   final _firebaseAuth = FirebaseAuth.instance;
 
   final _logger = getLogger("AuthService");
 
-  // Future<bool> _authenticateUser(Future<UserCredential>  validateUser) async {}
+  final ReactiveValue<User?> _user = ReactiveValue<User?>(null);
 
+  void initlizeAuth() {
+    _user.value = _firebaseAuth.currentUser;
+  }
+
+  User? get user => _user.value;
   /* 
   Log the user in using [email] and [password]
   returns true if user successfuly loged in otherwise in error will be thrown
@@ -58,5 +64,16 @@ class AuthService {
           .e('signUpWithEmail | Failed with error Message: ${exp.toString()}');
       rethrow;
     }
+  }
+
+  void logout() {
+    _firebaseAuth.signOut();
+    _user.value = null;
+  }
+
+  bool isLogedIn() => user != null;
+
+  AuthService() {
+    listenToReactiveValues([_user]);
   }
 }
