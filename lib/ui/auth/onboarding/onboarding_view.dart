@@ -1,6 +1,7 @@
 import 'package:bike_riders/core/app/app.locator.dart';
 import 'package:bike_riders/core/app/app.router.dart';
 import 'package:bike_riders/core/app/constants.dart';
+import 'package:bike_riders/ui/auth/login/login_view.dart';
 import 'package:bike_riders/ui/shared/authentication_instructions.dart';
 import 'package:bike_riders/ui/shared/custom_button.dart';
 import 'package:flutter/material.dart';

@@ -14,7 +14,7 @@ class StartupViewModel extends BaseViewModel {
 
     _authSerivce.initlizeAuth();
     if (_authSerivce.isLogedIn()) {
-      _navigationService.replaceWith(Routes.groupsView);
+      _navigationService.replaceWith(Routes.navigationBarController);
     } else {
       _navigationService.replaceWith(Routes.onBoardingView);
     }
