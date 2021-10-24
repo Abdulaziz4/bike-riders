@@ -55,6 +55,11 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                 ),
               ],
             ),
+            InputField(
+              validator: (_) {},
+              onSave: (_) {},
+              hint: "Describe the ride",
+            ),
             RideTimePicker(),
           ],
         ),

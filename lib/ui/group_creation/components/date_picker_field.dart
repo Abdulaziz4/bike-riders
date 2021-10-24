@@ -18,11 +18,28 @@ class DatePickerField extends StatelessWidget {
         format: DateFormat.yMMMd(),
         onShowPicker: (context, currentValue) async {
           final date = await showDatePicker(
-            context: context,
-            firstDate: DateTime(1900),
-            initialDate: currentValue ?? DateTime.now(),
-            lastDate: DateTime(2100),
-          );
+              context: context,
+              firstDate: DateTime.now(),
+              initialDate: currentValue ?? DateTime.now(),
+              lastDate: DateTime(2100),
+              builder: (context, child) {
+                return Theme(
+                  data: ThemeData.dark().copyWith(
+                    colorScheme: ColorScheme.light().copyWith(
+                      primary: kPurpleColor,
+                      onSecondary: Colors.red,
+                      onSurface: Colors.white,
+                    ),
+                    dialogBackgroundColor: kPrimaryColor,
+
+                    // colorScheme: ColorScheme.fromSwatch(
+                    //   primaryColorDark: kPurpleColor,
+                    //   accentColor: Colors.teal,
+                    // ),
+                  ),
+                  child: child!,
+                );
+              });
           if (date != null) {
             return date;
           }
@@ -31,8 +48,6 @@ class DatePickerField extends StatelessWidget {
         style: kMediumText,
         decoration: InputDecoration(
           hintText: "Ride Date",
-          // filled: true,
-          // fillColor: Colors,
           hintStyle: kMediumText,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(7),
