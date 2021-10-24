@@ -31,7 +31,7 @@ class AuthViewModel extends BaseViewModel {
         email: _email!,
         password: _password!,
       );
-      _navService.replaceWith(Routes.groupsView);
+      _navService.replaceWith(Routes.navigationBarController);
     } on AuthException catch (exp) {
       errorMessage = exp.message;
     } catch (e) {

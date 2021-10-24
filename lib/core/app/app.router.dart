@@ -13,6 +13,7 @@ import 'package:stacked/stacked_annotations.dart';
 import '../../ui/auth/login/login_view.dart';
 import '../../ui/auth/onboarding/onboarding_view.dart';
 import '../../ui/auth/signup/signup_view.dart';
+import '../../ui/group_creation/group_creation_view.dart';
 import '../../ui/groups/groups_view.dart';
 import '../../ui/nav_bar/navigation_bar.dart';
 import '../../ui/startup/startup_view.dart';
@@ -24,6 +25,7 @@ class Routes {
   static const String loginView = '/login-view';
   static const String signupView = '/signup-view';
   static const String groupsView = '/groups-view';
+  static const String groupCreationView = '/group-creation-view';
   static const all = <String>{
     startupView,
     onBoardingView,
@@ -31,6 +33,7 @@ class Routes {
     loginView,
     signupView,
     groupsView,
+    groupCreationView,
   };
 }
 
@@ -44,6 +47,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.signupView, page: SignupView),
     RouteDef(Routes.groupsView, page: GroupsView),
+    RouteDef(Routes.groupCreationView, page: GroupCreationView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -81,6 +85,12 @@ class StackedRouter extends RouterBase {
     GroupsView: (data) {
       return MaterialPageRoute<MaterialRoute<dynamic>>(
         builder: (context) => const GroupsView(),
+        settings: data,
+      );
+    },
+    GroupCreationView: (data) {
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
+        builder: (context) => const GroupCreationView(),
         settings: data,
       );
     },

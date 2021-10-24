@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: kPrimaryColor,
           backgroundColor: kPrimaryColor,
           primaryColor: kSecondryColor,
+          appBarTheme: AppBarTheme(backgroundColor: kAltColor),
           textTheme: const TextTheme(
             headline1: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
             headline2: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),

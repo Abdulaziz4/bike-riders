@@ -1,9 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+import 'package:bike_riders/core/app/app.locator.dart';
+import 'package:bike_riders/core/app/app.router.dart';
 import 'package:bike_riders/core/app/constants.dart';
 import 'package:bike_riders/ui/groups/groups_view.dart';
 import 'package:bike_riders/ui/nav_bar/auth_state_viewmodel.dart';
 import 'package:bike_riders/ui/profile/profile_view.dart';
-import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
 
 class NavigationBarController extends StatefulWidget {
   const NavigationBarController({Key? key}) : super(key: key);
@@ -63,7 +67,7 @@ class _NavigationBarControllerState extends State<NavigationBarController> {
                     Icons.add,
                     size: 30,
                   ),
-                  onPressed: () {},
+                  onPressed: navigateToCreategroup,
                 ),
               ),
             ),
@@ -79,5 +83,10 @@ class _NavigationBarControllerState extends State<NavigationBarController> {
       ),
       label: "",
     );
+  }
+
+  void navigateToCreategroup() {
+    final _navService = locator<NavigationService>();
+    _navService.navigateTo(Routes.groupCreationView);
   }
 }
