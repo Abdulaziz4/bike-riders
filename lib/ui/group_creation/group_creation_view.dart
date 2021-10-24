@@ -1,8 +1,11 @@
 import 'package:bike_riders/core/app/constants.dart';
 import 'package:bike_riders/ui/group_creation/components/date_picker_field.dart';
 import 'package:bike_riders/ui/group_creation/components/emoji_picker.dart';
+import 'package:bike_riders/ui/group_creation/components/time_picker.dart';
+import 'package:bike_riders/ui/shared/custom_button.dart';
 import 'package:bike_riders/ui/shared/input_field.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -52,7 +55,7 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                 ),
               ],
             ),
-            DatePickerField(),
+            RideTimePicker(),
           ],
         ),
       ),
