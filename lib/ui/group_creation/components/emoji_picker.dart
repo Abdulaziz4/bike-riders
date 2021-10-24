@@ -23,15 +23,15 @@ class _EmojiPickerState extends State<EmojiPicker> {
           filled: true,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
-            borderSide: const BorderSide(color: kSecondryColor, width: 4.0),
+            borderSide: const BorderSide(color: kAltColor, width: 4.0),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
-            borderSide: const BorderSide(color: kSecondryColor, width: 2.0),
+            borderSide: const BorderSide(color: kAltColor, width: 2.0),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
-            borderSide: const BorderSide(color: kSecondryColor, width: 2.0),
+            borderSide: const BorderSide(color: kAltColor, width: 2.0),
           ),
         ),
       ),

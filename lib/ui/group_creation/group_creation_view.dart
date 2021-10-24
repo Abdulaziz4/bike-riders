@@ -1,5 +1,10 @@
+import 'package:bike_riders/core/app/constants.dart';
+import 'package:bike_riders/ui/group_creation/components/date_picker_field.dart';
 import 'package:bike_riders/ui/group_creation/components/emoji_picker.dart';
+import 'package:bike_riders/ui/shared/input_field.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class GroupCreationView extends StatefulWidget {
   const GroupCreationView({Key? key}) : super(key: key);
@@ -29,11 +34,25 @@ class _GroupCreationViewState extends State<GroupCreationView> {
         title: Text("Create Group"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(kDefaultPadding),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            EmojiPicker(),
+            Row(
+              children: [
+                EmojiPicker(),
+                SizedBox(
+                  width: kDefaultPadding / 2,
+                ),
+                Expanded(
+                  child: InputField(
+                    validator: (_) {},
+                    onSave: (_) {},
+                    hint: "Title",
+                  ),
+                ),
+              ],
+            ),
+            DatePickerField(),
           ],
         ),
       ),

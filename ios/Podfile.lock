@@ -3,8 +3,6 @@ PODS:
     - Firebase/Firestore (= 8.6.0)
     - firebase_core
     - Flutter
-  - emoji_picker_flutter (0.0.1):
-    - Flutter
   - Firebase/Auth (8.6.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 8.6.0)
@@ -69,17 +67,13 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
-  - shared_preferences (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
-  - emoji_picker_flutter (from `.symlinks/plugins/emoji_picker_flutter/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `8.6.0`)
   - Flutter (from `Flutter`)
-  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
 SPEC REPOS:
   trunk:
@@ -96,8 +90,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
-  emoji_picker_flutter:
-    :path: ".symlinks/plugins/emoji_picker_flutter/ios"
   firebase_auth:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
@@ -107,8 +99,6 @@ EXTERNAL SOURCES:
     :tag: 8.6.0
   Flutter:
     :path: Flutter
-  shared_preferences:
-    :path: ".symlinks/plugins/shared_preferences/ios"
 
 CHECKOUT OPTIONS:
   FirebaseFirestore:
@@ -117,7 +107,6 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   cloud_firestore: bb4fcf1d62a2bf48586fad7a7e9612f20a719cda
-  emoji_picker_flutter: 4f9a1ac31d355e1bf9622a1e821a809149130127
   Firebase: 21ac9f28b09a8bdfc005f34c984fca84e7e8786d
   firebase_auth: a5da789c2876fda3ad7407bd2828e502dfeebc42
   firebase_core: c21ac09a8d23afd3594b56ed786bad12e5266bba
@@ -131,7 +120,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
-  shared_preferences: 5033afbb22d372e15aff8ff766df9021b845f273
 
 PODFILE CHECKSUM: e4f98a2e63f1ef4254cb4563bae23f4a3cbe797c
 
