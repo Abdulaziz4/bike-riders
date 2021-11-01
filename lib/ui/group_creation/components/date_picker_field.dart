@@ -31,11 +31,6 @@ class DatePickerField extends StatelessWidget {
                       onSurface: Colors.white,
                     ),
                     dialogBackgroundColor: kPrimaryColor,
-
-                    // colorScheme: ColorScheme.fromSwatch(
-                    //   primaryColorDark: kPurpleColor,
-                    //   accentColor: Colors.teal,
-                    // ),
                   ),
                   child: child!,
                 );

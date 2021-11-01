@@ -1,21 +1,23 @@
-import 'package:bike_riders/core/app/utils/colors_helper.dart';
-import 'package:bike_riders/ui/group_creation/components/date_picker_field.dart';
 import 'package:flutter/material.dart';
 import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
 
+import 'package:bike_riders/core/app/utils/colors_helper.dart';
+import 'package:bike_riders/ui/group_creation/components/date_picker_field.dart';
 import 'package:bike_riders/core/app/constants.dart';
 import 'package:bike_riders/ui/shared/custom_button.dart';
 
-class RideTimePicker extends StatefulWidget {
-  const RideTimePicker({
+class RideDateTimePickingSection extends StatefulWidget {
+  const RideDateTimePickingSection({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<RideTimePicker> createState() => _RideTimePickerState();
+  State<RideDateTimePickingSection> createState() =>
+      _RideDateTimePickingSectionState();
 }
 
-class _RideTimePickerState extends State<RideTimePicker> {
+class _RideDateTimePickingSectionState
+    extends State<RideDateTimePickingSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,6 +27,10 @@ class _RideTimePickerState extends State<RideTimePicker> {
       decoration: BoxDecoration(
         color: brighten(kPrimaryColor, 8),
         borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          width: 0.2,
+          color: Colors.white,
+        ),
       ),
       child: Column(
         children: [

@@ -7,13 +7,15 @@ class InputField extends StatefulWidget {
   final void Function(String) onSave;
   final bool obscureText;
   final TextEditingController? controller;
+  final int numOfLines;
   const InputField({
     Key? key,
-    this.hint = "",
     required this.validator,
-    this.obscureText = false,
-    this.controller,
     required this.onSave,
+    this.obscureText = false,
+    this.hint = "",
+    this.numOfLines = 1,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -23,11 +25,8 @@ class InputField extends StatefulWidget {
 class _InputFieldState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Container(
       margin: const EdgeInsets.symmetric(vertical: kDefaultPadding / 1.5),
-      width: size.width * 0.8,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -45,6 +44,7 @@ class _InputFieldState extends State<InputField> {
             widget.onSave(value);
           }
         },
+        maxLines: widget.numOfLines,
         validator: widget.validator,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
