@@ -14,28 +14,15 @@ class GroupCreationView extends StatefulWidget {
 }
 
 class _GroupCreationViewState extends State<GroupCreationView> {
-  late TextEditingController _emojiController;
-  late FocusNode _focusNode;
-  @override
-  void initState() {
-    super.initState();
-    _emojiController = TextEditingController();
-    _focusNode = FocusNode()
-      ..addListener(() {
-        _focusNode.unfocus();
-      });
-  }
-
-  bool _showEmojiPicker = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Create Group"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(kDefaultPadding),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(kDefaultPadding),
           child: Column(
             children: [
               Row(
@@ -59,6 +46,49 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                 hint: "Describe the ride",
                 numOfLines: 3,
               ),
+              InputField(
+                validator: (_) {},
+                onSave: (_) {},
+                hint: "Number of participents",
+              ),
+              InputField(
+                validator: (_) {},
+                onSave: (_) {},
+                hint: "Distance in KM",
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                child: DropdownButtonFormField(
+                  decoration: InputDecoration(enabledBorder: InputBorder.none),
+                  hint: Text(
+                    "Level",
+                    style: TextStyle(color: Colors.grey[600]),
+                  ),
+                  // value: "Beginner",
+                  dropdownColor: kAltColor,
+                  onSaved: (_) {},
+                  onChanged: (_) {},
+                  items: const [
+                    DropdownMenuItem(
+                      child: Text("Beginner"),
+                      value: "Beginner",
+                    ),
+                    DropdownMenuItem(
+                      child: Text("Intermediate"),
+                      value: "Intermediate",
+                    ),
+                    DropdownMenuItem(
+                      child: Text("Hardcore"),
+                      value: "Hardcore",
+                    ),
+                  ],
+                ),
+              ),
               RideDateTimePickingSection(),
               LocationPickingSection(),
             ],
@@ -66,11 +96,5 @@ class _GroupCreationViewState extends State<GroupCreationView> {
         ),
       ),
     );
-  }
-
-  void toggleEmojiPicker() {
-    setState(() {
-      _showEmojiPicker = !_showEmojiPicker;
-    });
   }
 }
