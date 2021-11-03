@@ -2,14 +2,25 @@ import 'package:bike_riders/ui/group_creation/components/section_container.dart'
 import 'package:flutter/material.dart';
 import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
 
-import 'package:bike_riders/core/app/utils/colors_helper.dart';
 import 'package:bike_riders/ui/group_creation/components/date_picker_field.dart';
 import 'package:bike_riders/core/app/constants.dart';
 import 'package:bike_riders/ui/shared/custom_button.dart';
 
 class RideDateTimePickingSection extends StatefulWidget {
+  final TimeOfDay? startTime;
+  final TimeOfDay? endTime;
+
+  final void Function(TimeOfDay) saveStartTime;
+  final void Function(TimeOfDay) saveEndTime;
+  final void Function(DateTime) saveDate;
+
   const RideDateTimePickingSection({
     Key? key,
+    required this.saveDate,
+    required this.endTime,
+    required this.saveEndTime,
+    required this.saveStartTime,
+    required this.startTime,
   }) : super(key: key);
 
   @override
@@ -25,7 +36,7 @@ class _RideDateTimePickingSectionState
       height: 250,
       child: Column(
         children: [
-          DatePickerField(),
+          DatePickerField(saveDate: widget.saveDate),
           Expanded(
             child: Row(
               children: [
@@ -38,10 +49,11 @@ class _RideDateTimePickingSectionState
                         style: kMediumText,
                       ),
                       Text(
-                        "4:00 PM",
+                        widget.startTime?.toString() ??
+                            TimeOfDay.now().toString(),
                         style: kMediumText,
                       ),
-                      buildPickTimeButton(),
+                      buildPickTimeButton(widget.saveStartTime),
                     ],
                   ),
                 ),
@@ -59,10 +71,11 @@ class _RideDateTimePickingSectionState
                         style: kMediumText,
                       ),
                       Text(
-                        "4:00 PM",
+                        widget.endTime?.toString() ??
+                            TimeOfDay.now().toString(),
                         style: kMediumText,
                       ),
-                      buildPickTimeButton(),
+                      buildPickTimeButton(widget.saveEndTime),
                     ],
                   ),
                 ),
@@ -74,11 +87,11 @@ class _RideDateTimePickingSectionState
     );
   }
 
-  CustomButton buildPickTimeButton() {
+  CustomButton buildPickTimeButton(void Function(TimeOfDay) onPicked) {
     return CustomButton(
       backgroundColor: kPurpleColor,
-      onPress: () {
-        Navigator.of(context).push(
+      onPress: () async {
+        final result = await Navigator.of(context).push(
           showPicker(
             context: context,
             accentColor: kPurpleColor,
@@ -86,6 +99,9 @@ class _RideDateTimePickingSectionState
             onChange: (_) {},
           ),
         );
+        if (result != null) {
+          onPicked(result);
+        }
       },
       text: "Pick Time",
       textStyle: kSmallText,

@@ -5,9 +5,8 @@ import 'package:bike_riders/core/app/constants.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 class DatePickerField extends StatelessWidget {
-  const DatePickerField({
-    Key? key,
-  }) : super(key: key);
+  final void Function(DateTime) saveDate;
+  const DatePickerField({Key? key, required this.saveDate}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +14,11 @@ class DatePickerField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
           vertical: 8.0, horizontal: kDefaultPadding),
       child: DateTimeField(
+        onSaved: (date) {
+          if (date != null) {
+            saveDate(date);
+          }
+        },
         format: DateFormat.yMMMd(),
         onShowPicker: (context, currentValue) async {
           final date = await showDatePicker(

@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'package:bike_riders/ui/group_creation/components/section_container.dart';
 import 'package:bike_riders/ui/shared/custom_button.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationPickingSection extends StatelessWidget {
-  const LocationPickingSection({Key? key}) : super(key: key);
+  final void Function(LatLng) saveLocation;
+  const LocationPickingSection({Key? key, required this.saveLocation})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +42,9 @@ class LocationPickingSection extends StatelessWidget {
                   builder: (_) => LocationPickerView(),
                 ),
               );
+              if (result != null) {
+                saveLocation(result);
+              }
             },
             text: "Pick Location",
           ),

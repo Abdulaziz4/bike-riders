@@ -2,9 +2,12 @@ import 'package:bike_riders/core/app/constants.dart';
 import 'package:bike_riders/ui/group_creation/components/emoji_picker.dart';
 import 'package:bike_riders/ui/group_creation/components/date_time_picking_section.dart';
 import 'package:bike_riders/ui/group_creation/components/location_picking_section.dart';
+import 'package:bike_riders/ui/group_creation/viewmodels/group_creation_viewmodel.dart';
+import 'package:bike_riders/ui/shared/custom_button.dart';
 import 'package:bike_riders/ui/shared/input_field.dart';
 
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 class GroupCreationView extends StatefulWidget {
   const GroupCreationView({Key? key}) : super(key: key);
@@ -20,81 +23,103 @@ class _GroupCreationViewState extends State<GroupCreationView> {
       appBar: AppBar(
         title: Text("Create Group"),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(kDefaultPadding),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  EmojiPicker(),
-                  SizedBox(
-                    width: kDefaultPadding / 2,
+      body: ViewModelBuilder<GroupCreationViewModel>.reactive(
+          viewModelBuilder: () => GroupCreationViewModel(),
+          builder: (context, viewmodel, _) {
+            return Form(
+              key: viewmodel.formKey,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(kDefaultPadding),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          EmojiPicker(onSave: viewmodel.saveEmoji),
+                          SizedBox(
+                            width: kDefaultPadding / 2,
+                          ),
+                          Expanded(
+                            child: InputField(
+                              validator: (_) {},
+                              onSave: viewmodel.saveTitle,
+                              hint: "Title",
+                            ),
+                          ),
+                        ],
+                      ),
+                      InputField(
+                        validator: (_) {},
+                        onSave: viewmodel.saveDesc,
+                        hint: "Describe the ride",
+                        numOfLines: 3,
+                      ),
+                      InputField(
+                        validator: (_) {},
+                        onSave: viewmodel.saveParticipentsNumber,
+                        hint: "Number of participents",
+                      ),
+                      InputField(
+                        validator: (_) {},
+                        onSave: viewmodel.saveDistance,
+                        hint: "Distance in KM",
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: kDefaultPadding / 2),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(7),
+                        ),
+                        child: DropdownButtonFormField(
+                          decoration:
+                              InputDecoration(enabledBorder: InputBorder.none),
+                          hint: Text(
+                            "Level",
+                            style: TextStyle(color: Colors.grey[600]),
+                          ),
+                          value: "Beginner",
+                          dropdownColor: kAltColor,
+                          onSaved: (value) {
+                            if (value != null) {
+                              viewmodel.saveLevel(value.toString());
+                            }
+                          },
+                          items: const [
+                            DropdownMenuItem(
+                              child: Text("Beginner"),
+                              value: "Beginner",
+                            ),
+                            DropdownMenuItem(
+                              child: Text("Intermediate"),
+                              value: "Intermediate",
+                            ),
+                            DropdownMenuItem(
+                              child: Text("Hardcore"),
+                              value: "Hardcore",
+                            ),
+                          ],
+                        ),
+                      ),
+                      RideDateTimePickingSection(
+                        startTime: viewmodel.startTime,
+                        endTime: viewmodel.endTime,
+                        saveDate: viewmodel.saveDate,
+                        saveEndTime: viewmodel.saveEndTime,
+                        saveStartTime: viewmodel.saveStartTime,
+                      ),
+                      LocationPickingSection(
+                        saveLocation: viewmodel.saveLocation,
+                      ),
+                      CustomButton(
+                          onPress: viewmodel.validateAndSubmitForm,
+                          text: "Submit")
+                    ],
                   ),
-                  Expanded(
-                    child: InputField(
-                      validator: (_) {},
-                      onSave: (_) {},
-                      hint: "Title",
-                    ),
-                  ),
-                ],
-              ),
-              InputField(
-                validator: (_) {},
-                onSave: (_) {},
-                hint: "Describe the ride",
-                numOfLines: 3,
-              ),
-              InputField(
-                validator: (_) {},
-                onSave: (_) {},
-                hint: "Number of participents",
-              ),
-              InputField(
-                validator: (_) {},
-                onSave: (_) {},
-                hint: "Distance in KM",
-              ),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(7),
                 ),
-                child: DropdownButtonFormField(
-                  decoration: InputDecoration(enabledBorder: InputBorder.none),
-                  hint: Text(
-                    "Level",
-                    style: TextStyle(color: Colors.grey[600]),
-                  ),
-                  // value: "Beginner",
-                  dropdownColor: kAltColor,
-                  onSaved: (_) {},
-                  onChanged: (_) {},
-                  items: const [
-                    DropdownMenuItem(
-                      child: Text("Beginner"),
-                      value: "Beginner",
-                    ),
-                    DropdownMenuItem(
-                      child: Text("Intermediate"),
-                      value: "Intermediate",
-                    ),
-                    DropdownMenuItem(
-                      child: Text("Hardcore"),
-                      value: "Hardcore",
-                    ),
-                  ],
-                ),
               ),
-              RideDateTimePickingSection(),
-              LocationPickingSection(),
-            ],
-          ),
-        ),
-      ),
+            );
+          }),
     );
   }
 }
