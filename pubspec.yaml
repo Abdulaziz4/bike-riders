@@ -43,7 +43,10 @@ dependencies:
   logger: ^1.1.0
   datetime_picker_formfield: ^2.0.0
   intl:
+  geolocator: ^7.7.1
+  google_maps_flutter: ^2.1.0
   day_night_time_picker: ^1.0.3+1
+  http: ^0.13.4
 dev_dependencies:
   flutter_test:
     sdk: flutter

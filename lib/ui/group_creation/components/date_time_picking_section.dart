@@ -1,3 +1,4 @@
+import 'package:bike_riders/ui/group_creation/components/section_container.dart';
 import 'package:flutter/material.dart';
 import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
 
@@ -20,18 +21,8 @@ class _RideDateTimePickingSectionState
     extends State<RideDateTimePickingSection> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
-      width: double.infinity,
+    return SectionContainer(
       height: 250,
-      decoration: BoxDecoration(
-        color: brighten(kPrimaryColor, 8),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          width: 0.2,
-          color: Colors.white,
-        ),
-      ),
       child: Column(
         children: [
           DatePickerField(),

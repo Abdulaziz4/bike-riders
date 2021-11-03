@@ -7,12 +7,14 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
 import '../../ui/auth/login/login_view.dart';
 import '../../ui/auth/onboarding/onboarding_view.dart';
 import '../../ui/auth/signup/signup_view.dart';
+import '../../ui/group_creation/components/location_picker.dart';
 import '../../ui/group_creation/group_creation_view.dart';
 import '../../ui/groups/groups_view.dart';
 import '../../ui/nav_bar/navigation_bar.dart';
@@ -26,6 +28,7 @@ class Routes {
   static const String signupView = '/signup-view';
   static const String groupsView = '/groups-view';
   static const String groupCreationView = '/group-creation-view';
+  static const String locationPickerView = '/location-picker-view';
   static const all = <String>{
     startupView,
     onBoardingView,
@@ -34,6 +37,7 @@ class Routes {
     signupView,
     groupsView,
     groupCreationView,
+    locationPickerView,
   };
 }
 
@@ -48,6 +52,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.signupView, page: SignupView),
     RouteDef(Routes.groupsView, page: GroupsView),
     RouteDef(Routes.groupCreationView, page: GroupCreationView),
+    RouteDef(Routes.locationPickerView, page: LocationPickerView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -94,5 +99,28 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    LocationPickerView: (data) {
+      var args = data.getArgs<LocationPickerViewArguments>(
+        orElse: () => LocationPickerViewArguments(),
+      );
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
+        builder: (context) => LocationPickerView(
+          key: args.key,
+          initialPosition: args.initialPosition,
+        ),
+        settings: data,
+      );
+    },
   };
+}
+
+/// ************************************************************************
+/// Arguments holder classes
+/// *************************************************************************
+
+/// LocationPickerView arguments holder class
+class LocationPickerViewArguments {
+  final Key? key;
+  final LatLng? initialPosition;
+  LocationPickerViewArguments({this.key, this.initialPosition});
 }

@@ -1,6 +1,7 @@
 import 'package:bike_riders/core/app/constants.dart';
 import 'package:bike_riders/ui/group_creation/components/emoji_picker.dart';
 import 'package:bike_riders/ui/group_creation/components/date_time_picking_section.dart';
+import 'package:bike_riders/ui/group_creation/components/location_picking_section.dart';
 import 'package:bike_riders/ui/shared/input_field.dart';
 
 import 'package:flutter/material.dart';
@@ -34,31 +35,34 @@ class _GroupCreationViewState extends State<GroupCreationView> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(kDefaultPadding),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                EmojiPicker(),
-                SizedBox(
-                  width: kDefaultPadding / 2,
-                ),
-                Expanded(
-                  child: InputField(
-                    validator: (_) {},
-                    onSave: (_) {},
-                    hint: "Title",
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  EmojiPicker(),
+                  SizedBox(
+                    width: kDefaultPadding / 2,
                   ),
-                ),
-              ],
-            ),
-            InputField(
-              validator: (_) {},
-              onSave: (_) {},
-              hint: "Describe the ride",
-              numOfLines: 3,
-            ),
-            RideDateTimePickingSection(),
-          ],
+                  Expanded(
+                    child: InputField(
+                      validator: (_) {},
+                      onSave: (_) {},
+                      hint: "Title",
+                    ),
+                  ),
+                ],
+              ),
+              InputField(
+                validator: (_) {},
+                onSave: (_) {},
+                hint: "Describe the ride",
+                numOfLines: 3,
+              ),
+              RideDateTimePickingSection(),
+              LocationPickingSection(),
+            ],
+          ),
         ),
       ),
     );
