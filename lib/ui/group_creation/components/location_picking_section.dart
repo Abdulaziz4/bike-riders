@@ -9,7 +9,11 @@ import 'package:bike_riders/ui/group_creation/components/location_picker.dart';
 
 class LocationPickingSection extends StatefulWidget {
   final void Function(LatLng) saveLocation;
-  const LocationPickingSection({Key? key, required this.saveLocation})
+  final bool showLocationNotPickedError;
+  const LocationPickingSection(
+      {Key? key,
+      required this.saveLocation,
+      required this.showLocationNotPickedError})
       : super(key: key);
 
   @override
@@ -52,6 +56,13 @@ class _LocationPickingSectionState extends State<LocationPickingSection> {
                     ),
             ),
           ),
+          if (widget.showLocationNotPickedError)
+            Text(
+              "Please select a location.",
+              style: kSmallText.copyWith(
+                color: Colors.red,
+              ),
+            ),
           CustomButton(
             onPress: () async {
               final result = await Navigator.of(context).push(

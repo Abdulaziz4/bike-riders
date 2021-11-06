@@ -42,7 +42,12 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                           ),
                           Expanded(
                             child: InputField(
-                              validator: (_) {},
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Please enter a title.";
+                                }
+                                return null;
+                              },
                               onSave: viewmodel.saveTitle,
                               hint: "Title",
                             ),
@@ -56,12 +61,22 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                         numOfLines: 3,
                       ),
                       InputField(
-                        validator: (_) {},
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please enter the number of participents.";
+                          }
+                          return null;
+                        },
                         onSave: viewmodel.saveParticipentsNumber,
                         hint: "Number of participents",
                       ),
                       InputField(
-                        validator: (_) {},
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please enter the distance.";
+                          }
+                          return null;
+                        },
                         onSave: viewmodel.saveDistance,
                         hint: "Distance in KM",
                       ),
@@ -75,6 +90,7 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                       ),
                       LocationPickingSection(
                         saveLocation: viewmodel.saveLocation,
+                        showLocationNotPickedError: viewmodel.showLocationError,
                       ),
                       CustomButton(
                           onPress: viewmodel.validateAndSubmitForm,

@@ -22,8 +22,8 @@ class _EmojiPickerState extends State<EmojiPicker> {
         },
         style: TextStyle(fontSize: 40),
         textAlign: TextAlign.center,
+        initialValue: "🚴🏻‍♂️",
         decoration: InputDecoration(
-          hintText: "🤩",
           contentPadding: const EdgeInsets.symmetric(vertical: 10),
           fillColor: Colors.grey[300],
           filled: true,

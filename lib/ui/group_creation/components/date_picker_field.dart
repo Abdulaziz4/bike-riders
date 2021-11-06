@@ -19,6 +19,13 @@ class DatePickerField extends StatelessWidget {
             saveDate(date);
           }
         },
+        initialValue: DateTime.now(),
+        validator: (value) {
+          if (value == null) {
+            return "Please enter the date.";
+          }
+          return null;
+        },
         format: DateFormat.yMMMd(),
         onShowPicker: (context, currentValue) async {
           final date = await showDatePicker(

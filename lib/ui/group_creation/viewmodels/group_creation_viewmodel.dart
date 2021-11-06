@@ -3,6 +3,14 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 class GroupCreationViewModel extends BaseViewModel {
+  GroupCreationViewModel() {
+    startTime = TimeOfDay.now();
+    // Add one hour to start time
+    endTime = startTime.replacing(
+      hour: startTime.hour + 1,
+      minute: startTime.minute,
+    );
+  }
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   String emoji = "";
@@ -14,13 +22,28 @@ class GroupCreationViewModel extends BaseViewModel {
   String? level;
 
   DateTime? date;
-  TimeOfDay? startTime;
-  TimeOfDay? endTime;
+  late TimeOfDay startTime;
+  late TimeOfDay endTime;
 
   LatLng? location;
 
+  bool showLocationError = false;
+
+  void submit() {}
+
   void validateAndSubmitForm() {
-    formKey.currentState?.save();
+    showLocationError = false; // reset error
+    notifyListeners();
+    bool isValid = formKey.currentState?.validate() ?? true;
+    if (location == null) {
+      showLocationError = true;
+      notifyListeners();
+    }
+    if (isValid && !showLocationError) {
+      formKey.currentState?.validate();
+      submit();
+    }
+
     print(emoji);
     print(title);
     print(description);
@@ -73,5 +96,13 @@ class GroupCreationViewModel extends BaseViewModel {
 
   void saveEmoji(String emoji) {
     this.emoji = emoji;
+  }
+
+  TimeOfDay addHour(int hour) {
+    TimeOfDay currentTime = TimeOfDay.now();
+    return currentTime.replacing(
+      hour: currentTime.hour + hour,
+      minute: currentTime.minute,
+    );
   }
 }

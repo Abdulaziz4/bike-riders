@@ -31,6 +31,12 @@ class _RideLevelDropdownState extends State<RideLevelDropdown> {
             widget.onSave(value.toString());
           }
         },
+        validator: (value) {
+          if (value == null) {
+            return "Please select the level.";
+          }
+          return null;
+        },
         onChanged: (_) {},
         items: const [
           DropdownMenuItem(
