@@ -1,11 +1,11 @@
-import 'package:bike_riders/core/app/constants.dart';
-import 'package:bike_riders/core/app/utils/location_helper.dart';
-import 'package:bike_riders/ui/group_creation/components/location_picker.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bike_riders/ui/group_creation/components/section_container.dart';
 import 'package:bike_riders/ui/shared/custom_button.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:bike_riders/core/app/constants.dart';
+import 'package:bike_riders/core/app/utils/location_helper.dart';
+import 'package:bike_riders/ui/group_creation/components/location_picker.dart';
 
 class LocationPickingSection extends StatefulWidget {
   final void Function(LatLng) saveLocation;

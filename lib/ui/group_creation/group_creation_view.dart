@@ -2,6 +2,7 @@ import 'package:bike_riders/core/app/constants.dart';
 import 'package:bike_riders/ui/group_creation/components/emoji_picker.dart';
 import 'package:bike_riders/ui/group_creation/components/date_time_picking_section.dart';
 import 'package:bike_riders/ui/group_creation/components/location_picking_section.dart';
+import 'package:bike_riders/ui/group_creation/components/ride_level_dropdown.dart';
 import 'package:bike_riders/ui/group_creation/viewmodels/group_creation_viewmodel.dart';
 import 'package:bike_riders/ui/shared/custom_button.dart';
 import 'package:bike_riders/ui/shared/input_field.dart';
@@ -64,43 +65,7 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                         onSave: viewmodel.saveDistance,
                         hint: "Distance in KM",
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: kDefaultPadding / 2),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(7),
-                        ),
-                        child: DropdownButtonFormField(
-                          decoration:
-                              InputDecoration(enabledBorder: InputBorder.none),
-                          hint: Text(
-                            "Level",
-                            style: TextStyle(color: Colors.grey[600]),
-                          ),
-                          value: "Beginner",
-                          dropdownColor: kAltColor,
-                          onSaved: (value) {
-                            if (value != null) {
-                              viewmodel.saveLevel(value.toString());
-                            }
-                          },
-                          items: const [
-                            DropdownMenuItem(
-                              child: Text("Beginner"),
-                              value: "Beginner",
-                            ),
-                            DropdownMenuItem(
-                              child: Text("Intermediate"),
-                              value: "Intermediate",
-                            ),
-                            DropdownMenuItem(
-                              child: Text("Hardcore"),
-                              value: "Hardcore",
-                            ),
-                          ],
-                        ),
-                      ),
+                      RideLevelDropdown(onSave: viewmodel.saveLevel),
                       RideDateTimePickingSection(
                         startTime: viewmodel.startTime,
                         endTime: viewmodel.endTime,

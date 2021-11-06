@@ -39,10 +39,12 @@ class GroupCreationViewModel extends BaseViewModel {
 
   void saveEndTime(TimeOfDay time) {
     endTime = time;
+    notifyListeners();
   }
 
   void saveStartTime(TimeOfDay time) {
     startTime = time;
+    notifyListeners();
   }
 
   void saveDate(DateTime pickedDate) {
