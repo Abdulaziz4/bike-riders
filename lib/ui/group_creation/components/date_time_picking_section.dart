@@ -91,17 +91,16 @@ class _RideDateTimePickingSectionState
     return CustomButton(
       backgroundColor: kPurpleColor,
       onPress: () async {
-        final result = await Navigator.of(context).push(
+        await Navigator.of(context).push(
           showPicker(
             context: context,
             accentColor: kPurpleColor,
             value: TimeOfDay.now(),
-            onChange: (_) {},
+            onChange: (result) {
+              onPicked(result);
+            },
           ),
         );
-        if (result != null) {
-          onPicked(result);
-        }
       },
       text: "Pick Time",
       textStyle: kSmallText,

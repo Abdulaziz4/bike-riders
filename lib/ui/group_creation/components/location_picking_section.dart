@@ -1,4 +1,5 @@
 import 'package:bike_riders/core/app/constants.dart';
+import 'package:bike_riders/core/app/utils/location_helper.dart';
 import 'package:bike_riders/ui/group_creation/components/location_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -6,10 +7,24 @@ import 'package:bike_riders/ui/group_creation/components/section_container.dart'
 import 'package:bike_riders/ui/shared/custom_button.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class LocationPickingSection extends StatelessWidget {
+class LocationPickingSection extends StatefulWidget {
   final void Function(LatLng) saveLocation;
   const LocationPickingSection({Key? key, required this.saveLocation})
       : super(key: key);
+
+  @override
+  State<LocationPickingSection> createState() => _LocationPickingSectionState();
+}
+
+class _LocationPickingSectionState extends State<LocationPickingSection> {
+  String? _locationImage;
+
+  void showLocationImage(LatLng position) {
+    final url = LocationHelper.generateLocationPreviewImage(location: position);
+    setState(() {
+      _locationImage = url;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +43,13 @@ class LocationPickingSection extends StatelessWidget {
                 ),
               ),
               alignment: Alignment.center,
-              child: Icon(
-                Icons.map,
-                size: 50,
-                color: Colors.white,
-              ),
+              child: _locationImage != null
+                  ? Image.network(_locationImage!)
+                  : Icon(
+                      Icons.map,
+                      size: 50,
+                      color: Colors.white,
+                    ),
             ),
           ),
           CustomButton(
@@ -43,7 +60,8 @@ class LocationPickingSection extends StatelessWidget {
                 ),
               );
               if (result != null) {
-                saveLocation(result);
+                widget.saveLocation(result);
+                showLocationImage(result);
               }
             },
             text: "Pick Location",
