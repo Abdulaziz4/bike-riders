@@ -1,3 +1,6 @@
+import 'package:bike_riders/core/app/app.locator.dart';
+import 'package:bike_riders/core/models/group.dart';
+import 'package:bike_riders/core/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stacked/stacked.dart';
@@ -11,13 +14,14 @@ class GroupCreationViewModel extends BaseViewModel {
       minute: startTime.minute,
     );
   }
+  final _firestoreService = locator<FirestoreService>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   String emoji = "";
   String title = "";
   String description = "";
   int participentsNumber = 0;
-  int distance = 0;
+  double distance = 0;
 
   String? level;
 
@@ -29,7 +33,21 @@ class GroupCreationViewModel extends BaseViewModel {
 
   bool showLocationError = false;
 
-  void submit() {}
+  void submit() {
+    final group = Group(
+      id: "",
+      title: title,
+      description: description,
+      level: level!,
+      participents: participentsNumber,
+      distance: distance,
+      date: date!,
+      startTime: startTime,
+      endTime: endTime,
+      location: location!,
+    );
+    _firestoreService.createGroup(group);
+  }
 
   void validateAndSubmitForm() {
     showLocationError = false; // reset error
@@ -40,7 +58,7 @@ class GroupCreationViewModel extends BaseViewModel {
       notifyListeners();
     }
     if (isValid && !showLocationError) {
-      formKey.currentState?.validate();
+      formKey.currentState?.save();
       submit();
     }
 
@@ -76,10 +94,11 @@ class GroupCreationViewModel extends BaseViewModel {
 
   void saveLevel(String level) {
     this.level = level;
+    notifyListeners();
   }
 
   void saveDistance(String distance) {
-    this.distance = int.parse(distance);
+    this.distance = double.parse(distance);
   }
 
   void saveParticipentsNumber(String participentsNum) {

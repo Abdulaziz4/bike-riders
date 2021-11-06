@@ -49,7 +49,7 @@ class _RideDateTimePickingSectionState
                         style: kMediumText,
                       ),
                       Text(
-                        widget.startTime?.toString() ??
+                        widget.startTime?.format(context) ??
                             TimeOfDay.now().toString(),
                         style: kMediumText,
                       ),
@@ -71,7 +71,7 @@ class _RideDateTimePickingSectionState
                         style: kMediumText,
                       ),
                       Text(
-                        widget.endTime?.toString() ??
+                        widget.endTime?.format(context) ??
                             TimeOfDay.now().toString(),
                         style: kMediumText,
                       ),

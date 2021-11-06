@@ -1,3 +1,4 @@
+import 'package:bike_riders/core/services/firestore_service.dart';
 import 'package:bike_riders/ui/auth/onboarding/onboarding_view.dart';
 import 'package:bike_riders/ui/auth/signup/signup_view.dart';
 import 'package:bike_riders/ui/group_creation/components/location_picker.dart';
@@ -25,6 +26,7 @@ import 'package:bike_riders/ui/startup/startup_view.dart';
   dependencies: [
     LazySingleton(classType: AuthService),
     LazySingleton(classType: NavigationService),
+    LazySingleton(classType: FirestoreService),
   ],
 )
 class App {
