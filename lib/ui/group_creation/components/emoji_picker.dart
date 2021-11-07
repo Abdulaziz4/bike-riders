@@ -12,7 +12,8 @@ class EmojiPicker extends StatefulWidget {
 class _EmojiPickerState extends State<EmojiPicker> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
       width: 75,
       child: TextFormField(
         onSaved: (value) {

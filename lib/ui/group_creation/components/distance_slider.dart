@@ -1,11 +1,16 @@
 import 'package:bike_riders/core/app/constants.dart';
-import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:flutter/material.dart';
 
 class DistanceSlider extends StatefulWidget {
-  const DistanceSlider({Key? key}) : super(key: key);
+  final double value;
+  final void Function(double) onChange;
+  const DistanceSlider({
+    Key? key,
+    required this.onChange,
+    required this.value,
+  }) : super(key: key);
 
   @override
   _DistanceSliderState createState() => _DistanceSliderState();
@@ -44,7 +49,7 @@ class _DistanceSliderState extends State<DistanceSlider> {
             child: SfSlider(
               min: 1,
               max: 101,
-              value: value,
+              value: widget.value,
               interval: 10,
               showTicks: true,
               showLabels: true,
@@ -57,10 +62,8 @@ class _DistanceSliderState extends State<DistanceSlider> {
                   (dynamic actualValue, String formattedText) {
                 return actualValue.toStringAsFixed(0);
               },
-              onChanged: (dynamic v) {
-                setState(() {
-                  value = v;
-                });
+              onChanged: (dynamic value) {
+                widget.onChange(value);
               },
             ),
           ),

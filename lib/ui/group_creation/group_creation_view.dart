@@ -39,6 +39,7 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                   child: Column(
                     children: [
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           EmojiPicker(onSave: viewmodel.saveEmoji),
                           SizedBox(
@@ -67,8 +68,14 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                         numOfLines: 3,
                       ),
                       RideLevelDropdown(onSave: viewmodel.saveLevel),
-                      ParticipentsSlider(),
-                      DistanceSlider(),
+                      ParticipentsSlider(
+                        value: viewmodel.participentsNumber,
+                        onChange: viewmodel.saveParticipentsNumber,
+                      ),
+                      DistanceSlider(
+                        value: viewmodel.distance,
+                        onChange: viewmodel.saveDistance,
+                      ),
                       // InputField(
                       //   validator: (value) {
                       //     if (value == null || value.isEmpty) {

@@ -1,11 +1,16 @@
 import 'package:bike_riders/core/app/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
 class ParticipentsSlider extends StatefulWidget {
-  const ParticipentsSlider({Key? key}) : super(key: key);
+  final int value;
+  final void Function(int) onChange;
+  const ParticipentsSlider({
+    Key? key,
+    required this.onChange,
+    required this.value,
+  }) : super(key: key);
 
   @override
   _ParticipentsSliderState createState() => _ParticipentsSliderState();
@@ -43,7 +48,7 @@ class _ParticipentsSliderState extends State<ParticipentsSlider> {
             child: SfSlider(
               min: 1,
               max: 51,
-              value: value,
+              value: widget.value,
               interval: 5,
               showTicks: true,
               showLabels: true,
@@ -55,9 +60,7 @@ class _ParticipentsSliderState extends State<ParticipentsSlider> {
                 return actualValue.toStringAsFixed(0);
               },
               onChanged: (dynamic v) {
-                setState(() {
-                  value = v;
-                });
+                widget.onChange((v as double).toInt());
               },
             ),
           ),

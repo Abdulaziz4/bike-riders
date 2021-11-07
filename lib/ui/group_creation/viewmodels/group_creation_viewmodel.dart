@@ -20,8 +20,8 @@ class GroupCreationViewModel extends BaseViewModel {
   String emoji = "";
   String title = "";
   String description = "";
-  int participentsNumber = 0;
-  double distance = 0;
+  int participentsNumber = 10;
+  double distance = 50;
 
   String? level;
 
@@ -97,12 +97,14 @@ class GroupCreationViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void saveDistance(String distance) {
-    this.distance = double.parse(distance);
+  void saveDistance(double distance) {
+    this.distance = distance;
+    notifyListeners();
   }
 
-  void saveParticipentsNumber(String participentsNum) {
-    participentsNumber = int.parse(participentsNum);
+  void saveParticipentsNumber(int participentsNum) {
+    participentsNumber = participentsNum;
+    notifyListeners();
   }
 
   void saveDesc(String description) {
