@@ -66,6 +66,7 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                         hint: "Describe the ride",
                         numOfLines: 3,
                       ),
+                      RideLevelDropdown(onSave: viewmodel.saveLevel),
                       ParticipentsSlider(),
                       DistanceSlider(),
                       // InputField(
@@ -78,17 +79,16 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                       //   onSave: viewmodel.saveParticipentsNumber,
                       //   hint: "Number of participents",
                       // ),
-                      InputField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Please enter the distance.";
-                          }
-                          return null;
-                        },
-                        onSave: viewmodel.saveDistance,
-                        hint: "Distance in KM",
-                      ),
-                      RideLevelDropdown(onSave: viewmodel.saveLevel),
+                      // InputField(
+                      //   validator: (value) {
+                      //     if (value == null || value.isEmpty) {
+                      //       return "Please enter the distance.";
+                      //     }
+                      //     return null;
+                      //   },
+                      //   onSave: viewmodel.saveDistance,
+                      //   hint: "Distance in KM",
+                      // ),
                       RideDateTimePickingSection(
                         startTime: viewmodel.startTime,
                         endTime: viewmodel.endTime,
