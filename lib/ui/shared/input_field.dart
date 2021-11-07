@@ -61,6 +61,7 @@ class _InputFieldState extends State<InputField> {
               },
               maxLines: widget.numOfLines,
               validator: widget.validator,
+              style: kMediumText.copyWith(fontSize: 17),
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(
                 hintText: widget.hint,

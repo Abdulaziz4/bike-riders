@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class Group {
   final String id;
   final String title;
+  final String emoji;
   final String description;
   final String level;
   final int participents;
@@ -18,6 +19,7 @@ class Group {
   Group({
     required this.id,
     required this.title,
+    required this.emoji,
     required this.description,
     required this.level,
     required this.participents,
@@ -31,6 +33,7 @@ class Group {
   Map<String, dynamic> toJson() {
     return {
       'title': title,
+      'emoji': emoji,
       'description': description,
       'level': level,
       'participents': participents,
@@ -46,6 +49,7 @@ class Group {
     return Group(
       id: map['id'],
       title: map['title'],
+      emoji: map["emoji"],
       description: map['description'],
       level: map['level'],
       participents: map['participents'],

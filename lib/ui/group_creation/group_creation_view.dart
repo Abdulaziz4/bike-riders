@@ -1,9 +1,5 @@
-import 'package:bike_riders/ui/group_creation/components/distance_slider.dart';
-import 'package:bike_riders/ui/group_creation/components/participents_slider.dart';
-import 'package:bike_riders/ui/shared/busy_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import 'package:bike_riders/core/app/constants.dart';
 import 'package:bike_riders/ui/group_creation/components/emoji_picker.dart';
@@ -13,6 +9,9 @@ import 'package:bike_riders/ui/group_creation/components/ride_level_dropdown.dar
 import 'package:bike_riders/ui/group_creation/viewmodels/group_creation_viewmodel.dart';
 import 'package:bike_riders/ui/shared/custom_button.dart';
 import 'package:bike_riders/ui/shared/input_field.dart';
+import 'package:bike_riders/ui/group_creation/components/distance_slider.dart';
+import 'package:bike_riders/ui/group_creation/components/participents_slider.dart';
+import 'package:bike_riders/ui/shared/busy_overlay.dart';
 
 class GroupCreationView extends StatefulWidget {
   const GroupCreationView({Key? key}) : super(key: key);
@@ -42,7 +41,7 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                     child: Column(
                       children: [
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             EmojiPicker(onSave: viewmodel.saveEmoji),
                             SizedBox(

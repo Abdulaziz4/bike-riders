@@ -4,6 +4,7 @@ import 'package:bike_riders/core/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class GroupCreationViewModel extends BaseViewModel {
   GroupCreationViewModel() {
@@ -15,6 +16,8 @@ class GroupCreationViewModel extends BaseViewModel {
     );
   }
   final _firestoreService = locator<FirestoreService>();
+  final _navService = locator<NavigationService>();
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   String emoji = "";
@@ -33,9 +36,11 @@ class GroupCreationViewModel extends BaseViewModel {
 
   bool showLocationError = false;
 
-  void submit() {
+  Future<void> submit() async {
+    setBusy(true);
     final group = Group(
       id: "",
+      emoji: emoji,
       title: title,
       description: description,
       level: level!,
@@ -46,7 +51,9 @@ class GroupCreationViewModel extends BaseViewModel {
       endTime: endTime,
       location: location!,
     );
-    _firestoreService.createGroup(group);
+    await _firestoreService.createGroup(group);
+    _navService.back();
+    setBusy(false);
   }
 
   void validateAndSubmitForm() {
