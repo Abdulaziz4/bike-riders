@@ -1,5 +1,6 @@
 import 'package:bike_riders/core/app/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
@@ -41,7 +42,7 @@ class _ParticipentsSliderState extends State<ParticipentsSlider> {
             ),
             child: SfSlider(
               min: 1,
-              max: 46,
+              max: 51,
               value: value,
               interval: 5,
               showTicks: true,

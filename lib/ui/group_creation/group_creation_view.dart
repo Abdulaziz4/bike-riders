@@ -1,3 +1,4 @@
+import 'package:bike_riders/ui/group_creation/components/distance_slider.dart';
 import 'package:bike_riders/ui/group_creation/components/participents_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -66,6 +67,7 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                         numOfLines: 3,
                       ),
                       ParticipentsSlider(),
+                      DistanceSlider(),
                       // InputField(
                       //   validator: (value) {
                       //     if (value == null || value.isEmpty) {

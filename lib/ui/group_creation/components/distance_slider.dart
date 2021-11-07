@@ -1,4 +1,5 @@
 import 'package:bike_riders/core/app/constants.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _DistanceSliderState extends State<DistanceSlider> {
           Padding(
             padding: const EdgeInsets.only(bottom: 1.0, left: 3),
             child: Text(
-              "Number of participents",
+              "Distance in KM",
               style:
                   kMediumText.copyWith(fontSize: 16, color: Colors.grey[300]),
             ),
@@ -42,11 +43,13 @@ class _DistanceSliderState extends State<DistanceSlider> {
             ),
             child: SfSlider(
               min: 1,
-              max: 46,
+              max: 101,
               value: value,
-              interval: 5,
+              interval: 10,
               showTicks: true,
               showLabels: true,
+              showDividers: true,
+              minorTicksPerInterval: 2,
               enableTooltip: true,
               activeColor: kPurpleColor,
               inactiveColor: kInputColor,
