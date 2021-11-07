@@ -51,10 +51,12 @@ class DatePickerField extends StatelessWidget {
           }
           return currentValue;
         },
-        style: kMediumText,
+        style: kMediumText.copyWith(fontSize: 17),
         decoration: InputDecoration(
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
           hintText: "Ride Date",
-          hintStyle: kMediumText,
+          hintStyle: kMediumText.copyWith(fontSize: 17),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(7),
             borderSide: BorderSide(

@@ -1,7 +1,8 @@
-import 'package:bike_riders/core/app/constants.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:flutter/material.dart';
+
+import 'package:bike_riders/core/app/constants.dart';
 
 class DistanceSlider extends StatefulWidget {
   final double value;

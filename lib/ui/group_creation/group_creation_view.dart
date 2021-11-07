@@ -76,26 +76,6 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                         value: viewmodel.distance,
                         onChange: viewmodel.saveDistance,
                       ),
-                      // InputField(
-                      //   validator: (value) {
-                      //     if (value == null || value.isEmpty) {
-                      //       return "Please enter the number of participents.";
-                      //     }
-                      //     return null;
-                      //   },
-                      //   onSave: viewmodel.saveParticipentsNumber,
-                      //   hint: "Number of participents",
-                      // ),
-                      // InputField(
-                      //   validator: (value) {
-                      //     if (value == null || value.isEmpty) {
-                      //       return "Please enter the distance.";
-                      //     }
-                      //     return null;
-                      //   },
-                      //   onSave: viewmodel.saveDistance,
-                      //   hint: "Distance in KM",
-                      // ),
                       RideDateTimePickingSection(
                         startTime: viewmodel.startTime,
                         endTime: viewmodel.endTime,
