@@ -1,5 +1,6 @@
 import 'package:bike_riders/ui/group_creation/components/distance_slider.dart';
 import 'package:bike_riders/ui/group_creation/components/participents_slider.dart';
+import 'package:bike_riders/ui/shared/busy_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -31,66 +32,70 @@ class _GroupCreationViewState extends State<GroupCreationView> {
       body: ViewModelBuilder<GroupCreationViewModel>.reactive(
           viewModelBuilder: () => GroupCreationViewModel(),
           builder: (context, viewmodel, _) {
-            return Form(
-              key: viewmodel.formKey,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(kDefaultPadding),
-                  child: Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          EmojiPicker(onSave: viewmodel.saveEmoji),
-                          SizedBox(
-                            width: kDefaultPadding / 2,
-                          ),
-                          Expanded(
-                            child: InputField(
-                              label: "Title",
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return "Please enter a title.";
-                                }
-                                return null;
-                              },
-                              onSave: viewmodel.saveTitle,
-                              hint: "Enter the title",
+            return BusyOverlay(
+              isBusy: viewmodel.isBusy,
+              child: Form(
+                key: viewmodel.formKey,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(kDefaultPadding),
+                    child: Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            EmojiPicker(onSave: viewmodel.saveEmoji),
+                            SizedBox(
+                              width: kDefaultPadding / 2,
                             ),
-                          ),
-                        ],
-                      ),
-                      InputField(
-                        validator: (_) {},
-                        onSave: viewmodel.saveDesc,
-                        label: "Description",
-                        hint: "Describe the ride",
-                        numOfLines: 3,
-                      ),
-                      RideLevelDropdown(onSave: viewmodel.saveLevel),
-                      ParticipentsSlider(
-                        value: viewmodel.participentsNumber,
-                        onChange: viewmodel.saveParticipentsNumber,
-                      ),
-                      DistanceSlider(
-                        value: viewmodel.distance,
-                        onChange: viewmodel.saveDistance,
-                      ),
-                      RideDateTimePickingSection(
-                        startTime: viewmodel.startTime,
-                        endTime: viewmodel.endTime,
-                        saveDate: viewmodel.saveDate,
-                        saveEndTime: viewmodel.saveEndTime,
-                        saveStartTime: viewmodel.saveStartTime,
-                      ),
-                      LocationPickingSection(
-                        saveLocation: viewmodel.saveLocation,
-                        showLocationNotPickedError: viewmodel.showLocationError,
-                      ),
-                      CustomButton(
-                          onPress: viewmodel.validateAndSubmitForm,
-                          text: "Submit")
-                    ],
+                            Expanded(
+                              child: InputField(
+                                label: "Title",
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "Please enter a title.";
+                                  }
+                                  return null;
+                                },
+                                onSave: viewmodel.saveTitle,
+                                hint: "Enter the title",
+                              ),
+                            ),
+                          ],
+                        ),
+                        InputField(
+                          validator: (_) {},
+                          onSave: viewmodel.saveDesc,
+                          label: "Description",
+                          hint: "Describe the ride",
+                          numOfLines: 3,
+                        ),
+                        RideLevelDropdown(onSave: viewmodel.saveLevel),
+                        ParticipentsSlider(
+                          value: viewmodel.participentsNumber,
+                          onChange: viewmodel.saveParticipentsNumber,
+                        ),
+                        DistanceSlider(
+                          value: viewmodel.distance,
+                          onChange: viewmodel.saveDistance,
+                        ),
+                        RideDateTimePickingSection(
+                          startTime: viewmodel.startTime,
+                          endTime: viewmodel.endTime,
+                          saveDate: viewmodel.saveDate,
+                          saveEndTime: viewmodel.saveEndTime,
+                          saveStartTime: viewmodel.saveStartTime,
+                        ),
+                        LocationPickingSection(
+                          saveLocation: viewmodel.saveLocation,
+                          showLocationNotPickedError:
+                              viewmodel.showLocationError,
+                        ),
+                        CustomButton(
+                            onPress: viewmodel.validateAndSubmitForm,
+                            text: "Submit")
+                      ],
+                    ),
                   ),
                 ),
               ),

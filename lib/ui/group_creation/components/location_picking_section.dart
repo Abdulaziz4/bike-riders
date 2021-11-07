@@ -33,22 +33,33 @@ class _LocationPickingSectionState extends State<LocationPickingSection> {
   @override
   Widget build(BuildContext context) {
     return SectionContainer(
-      height: 250,
+      height: 230,
+      margin: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
         children: [
           Expanded(
             child: Container(
-              margin: const EdgeInsets.all(kDefaultPadding / 2),
+              // width: 0,
+              margin: const EdgeInsets.symmetric(
+                vertical: kDefaultPadding / 4,
+                horizontal: kDefaultPadding,
+              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  width: 1,
+                  width: 0.5,
                   color: kAltColor,
                 ),
               ),
               alignment: Alignment.center,
               child: _locationImage != null
-                  ? Image.network(_locationImage!)
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.network(
+                        _locationImage!,
+                        fit: BoxFit.cover,
+                      ),
+                    )
                   : Icon(
                       Icons.map,
                       size: 50,
@@ -64,6 +75,7 @@ class _LocationPickingSectionState extends State<LocationPickingSection> {
               ),
             ),
           CustomButton(
+            backgroundColor: kPurpleColor,
             onPress: () async {
               final result = await Navigator.of(context).push(
                 MaterialPageRoute(

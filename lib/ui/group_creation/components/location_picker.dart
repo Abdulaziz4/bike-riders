@@ -1,13 +1,11 @@
 import 'dart:async';
 
-import 'package:bike_riders/core/app/app.locator.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import 'package:bike_riders/core/app/constants.dart';
 import 'package:bike_riders/core/app/utils/location_helper.dart';
-import 'package:flutter/material.dart';
-
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:stacked/stacked_annotations.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 class LocationPickerView extends StatefulWidget {
   final LatLng? initialPosition;
@@ -18,13 +16,14 @@ class LocationPickerView extends StatefulWidget {
 }
 
 class _LocationPickerViewState extends State<LocationPickerView> {
-  final Completer<GoogleMapController> _mapController = Completer();
+  // late Completer<GoogleMapController> _mapController;
+  GoogleMapController? _mapController;
 
   LatLng? _currentPosition;
 
+  String? _mapStyle;
   Future moveToLocation(LatLng currentLocation) async {
-    final controller = await _mapController.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(
+    _mapController?.animateCamera(CameraUpdate.newCameraPosition(
       CameraPosition(target: currentLocation, zoom: 16),
     ));
   }
@@ -43,11 +42,17 @@ class _LocationPickerViewState extends State<LocationPickerView> {
   @override
   void initState() {
     super.initState();
-
+    _loadMap();
     if (widget.initialPosition != null) {
       moveToLocation(widget.initialPosition!);
       _currentPosition = widget.initialPosition;
     }
+  }
+
+  void _loadMap() {
+    rootBundle.loadString('assets/darkmap.json').then((string) {
+      _mapStyle = string;
+    });
   }
 
   @override
@@ -63,7 +68,8 @@ class _LocationPickerViewState extends State<LocationPickerView> {
         children: [
           GoogleMap(
             onMapCreated: (controller) {
-              _mapController.complete(controller);
+              controller.setMapStyle(_mapStyle);
+              _mapController = controller;
             },
             onCameraMove: (position) {
               setState(() {
@@ -116,6 +122,7 @@ class _LocationPickerViewState extends State<LocationPickerView> {
             Icon(
               Icons.place,
               size: 56,
+              color: kPurpleColor,
             ),
             Container(
               decoration: const ShapeDecoration(

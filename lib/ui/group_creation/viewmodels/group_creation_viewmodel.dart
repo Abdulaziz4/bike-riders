@@ -61,17 +61,6 @@ class GroupCreationViewModel extends BaseViewModel {
       formKey.currentState?.save();
       submit();
     }
-
-    print(emoji);
-    print(title);
-    print(description);
-    print(participentsNumber);
-    print(distance);
-    print(level);
-    print(date);
-    print(startTime);
-    print(endTime);
-    print(location);
   }
 
   void saveLocation(LatLng location) {

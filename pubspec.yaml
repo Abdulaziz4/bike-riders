@@ -77,6 +77,7 @@ flutter:
   assets:
     - assets/shapes/top_curve.svg
     - assets/images/moving_bike.gif
+    - assets/darkmap.json
 
   #   - images/a_dot_ham.jpeg
 
