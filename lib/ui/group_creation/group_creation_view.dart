@@ -91,9 +91,14 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                           showLocationNotPickedError:
                               viewmodel.showLocationError,
                         ),
-                        CustomButton(
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          child: CustomButton(
+                            size: Size(300, 40),
                             onPress: viewmodel.validateAndSubmitForm,
-                            text: "Submit")
+                            text: "Create Group",
+                          ),
+                        )
                       ],
                     ),
                   ),
