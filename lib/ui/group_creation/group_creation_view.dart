@@ -1,3 +1,8 @@
+import 'package:bike_riders/ui/group_creation/components/participents_slider.dart';
+import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
+
 import 'package:bike_riders/core/app/constants.dart';
 import 'package:bike_riders/ui/group_creation/components/emoji_picker.dart';
 import 'package:bike_riders/ui/group_creation/components/date_time_picking_section.dart';
@@ -7,9 +12,6 @@ import 'package:bike_riders/ui/group_creation/viewmodels/group_creation_viewmode
 import 'package:bike_riders/ui/shared/custom_button.dart';
 import 'package:bike_riders/ui/shared/input_field.dart';
 
-import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
-
 class GroupCreationView extends StatefulWidget {
   const GroupCreationView({Key? key}) : super(key: key);
 
@@ -18,6 +20,7 @@ class GroupCreationView extends StatefulWidget {
 }
 
 class _GroupCreationViewState extends State<GroupCreationView> {
+  double value = 20;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +45,7 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                           ),
                           Expanded(
                             child: InputField(
+                              label: "Title",
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return "Please enter a title.";
@@ -49,7 +53,7 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                                 return null;
                               },
                               onSave: viewmodel.saveTitle,
-                              hint: "Title",
+                              hint: "Enter the title",
                             ),
                           ),
                         ],
@@ -57,19 +61,21 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                       InputField(
                         validator: (_) {},
                         onSave: viewmodel.saveDesc,
+                        label: "Description",
                         hint: "Describe the ride",
                         numOfLines: 3,
                       ),
-                      InputField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Please enter the number of participents.";
-                          }
-                          return null;
-                        },
-                        onSave: viewmodel.saveParticipentsNumber,
-                        hint: "Number of participents",
-                      ),
+                      ParticipentsSlider(),
+                      // InputField(
+                      //   validator: (value) {
+                      //     if (value == null || value.isEmpty) {
+                      //       return "Please enter the number of participents.";
+                      //     }
+                      //     return null;
+                      //   },
+                      //   onSave: viewmodel.saveParticipentsNumber,
+                      //   hint: "Number of participents",
+                      // ),
                       InputField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {

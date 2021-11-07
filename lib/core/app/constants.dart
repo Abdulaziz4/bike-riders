@@ -1,3 +1,4 @@
+import 'package:bike_riders/core/app/utils/colors_helper.dart';
 import 'package:flutter/material.dart';
 
 // Colors
@@ -6,7 +7,7 @@ const kSecondryColor = Color(0xFFFFAE5F);
 const kAltColor = Color(0xFF4CCFAC);
 const kPurpleColor = Color(0xFF7E8CE0);
 const kRedColor = Color(0xFFF59078);
-
+final kInputColor = brighten(Color(0xFF262833), 15);
 // Sizes
 const kDefaultPadding = 20.0;
 

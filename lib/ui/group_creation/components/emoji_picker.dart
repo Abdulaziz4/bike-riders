@@ -25,19 +25,19 @@ class _EmojiPickerState extends State<EmojiPicker> {
         initialValue: "🚴🏻‍♂️",
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 10),
-          fillColor: Colors.grey[300],
+          fillColor: kInputColor,
           filled: true,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
-            borderSide: const BorderSide(color: kAltColor, width: 4.0),
+            borderSide: const BorderSide(color: kAltColor, width: 1),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
-            borderSide: const BorderSide(color: kAltColor, width: 2.0),
+            borderSide: const BorderSide(color: kAltColor, width: 1.0),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
-            borderSide: const BorderSide(color: kAltColor, width: 2.0),
+            borderSide: const BorderSide(color: kAltColor, width: 1.0),
           ),
         ),
       ),
