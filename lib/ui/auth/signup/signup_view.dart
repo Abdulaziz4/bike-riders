@@ -49,6 +49,7 @@ class _SignupViewState extends State<SignupView> {
                   hint: "Email",
                   validator: Validator.emailValidator,
                   onSave: viewmodel.setEmail,
+                  horizantolMargin: kDefaultPadding * 1.5,
                 ),
                 InputField(
                   hint: "Password",
@@ -56,6 +57,7 @@ class _SignupViewState extends State<SignupView> {
                   validator: Validator.passwordValidator,
                   controller: _controller,
                   onSave: viewmodel.setPassword,
+                  horizantolMargin: kDefaultPadding * 1.5,
                 ),
                 InputField(
                   hint: "Confirm Password",
@@ -67,6 +69,7 @@ class _SignupViewState extends State<SignupView> {
                   },
                   obscureText: true,
                   onSave: (_) {},
+                  horizantolMargin: kDefaultPadding * 1.5,
                 ),
                 SizedBox(
                   height: kDefaultPadding * 2,

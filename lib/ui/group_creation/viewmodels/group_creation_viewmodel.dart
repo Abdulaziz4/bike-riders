@@ -1,10 +1,11 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+
 import 'package:bike_riders/core/app/app.locator.dart';
 import 'package:bike_riders/core/models/group.dart';
 import 'package:bike_riders/core/services/firestore_service.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 class GroupCreationViewModel extends BaseViewModel {
   GroupCreationViewModel() {

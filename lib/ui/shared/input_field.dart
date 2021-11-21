@@ -10,6 +10,7 @@ class InputField extends StatefulWidget {
   final bool obscureText;
   final TextEditingController? controller;
   final int numOfLines;
+  final double horizantolMargin;
   const InputField({
     Key? key,
     required this.validator,
@@ -19,6 +20,7 @@ class InputField extends StatefulWidget {
     this.hint = "",
     this.numOfLines = 1,
     this.controller,
+    this.horizantolMargin = 0,
   }) : super(key: key);
 
   @override
@@ -29,7 +31,10 @@ class _InputFieldState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: EdgeInsets.symmetric(
+        vertical: 8.0,
+        horizontal: widget.horizantolMargin,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

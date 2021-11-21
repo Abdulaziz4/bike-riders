@@ -1,9 +1,12 @@
+import 'package:bike_riders/core/app/app.locator.dart';
 import 'package:bike_riders/core/app/utils/auth_exception.dart';
 import 'package:bike_riders/core/app/utils/logger.dart';
+import 'package:bike_riders/core/services/push_notification_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stacked/stacked.dart';
 
 class AuthService with ReactiveServiceMixin {
+  late PushNotificationService _messagingService;
   final _firebaseAuth = FirebaseAuth.instance;
 
   final _logger = getLogger("AuthService");
@@ -11,6 +14,7 @@ class AuthService with ReactiveServiceMixin {
   final ReactiveValue<User?> _user = ReactiveValue<User?>(null);
 
   void initlizeAuth() {
+    _messagingService = locator<PushNotificationService>();
     _user.value = _firebaseAuth.currentUser;
   }
 
@@ -53,6 +57,7 @@ class AuthService with ReactiveServiceMixin {
         password: password,
       );
       final success = authRes.user != null;
+      _messagingService.requestPermission();
 
       return success;
     } on FirebaseAuthException catch (exp) {

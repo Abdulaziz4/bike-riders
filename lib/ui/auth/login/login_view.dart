@@ -37,12 +37,14 @@ class _LoginViewState extends State<LoginView> {
                       hint: "Email",
                       validator: Validator.emailValidator,
                       onSave: viewmodel.setEmail,
+                      horizantolMargin: kDefaultPadding * 1.5,
                     ),
                     InputField(
                       hint: "Password",
                       obscureText: true,
                       validator: Validator.passwordValidator,
                       onSave: viewmodel.setPassword,
+                      horizantolMargin: kDefaultPadding * 1.5,
                     ),
                     SizedBox(
                       height: kDefaultPadding * 2,

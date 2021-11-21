@@ -12,6 +12,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../services/auth_service.dart';
 import '../services/firestore_service.dart';
+import '../services/push_notification_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -21,6 +22,7 @@ void setupLocator({String? environment, EnvironmentFilter? environmentFilter}) {
       environment: environment, environmentFilter: environmentFilter);
 
 // Register dependencies
+  locator.registerLazySingleton(() => PushNotificationService());
   locator.registerLazySingleton(() => AuthService());
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => FirestoreService());

@@ -41,9 +41,11 @@ class _GroupCreationViewState extends State<GroupCreationView> {
                     child: Column(
                       children: [
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            EmojiPicker(onSave: viewmodel.saveEmoji),
+                            EmojiPicker(
+                              onSave: viewmodel.saveEmoji,
+                            ),
                             SizedBox(
                               width: kDefaultPadding / 2,
                             ),
