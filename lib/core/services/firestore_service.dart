@@ -11,4 +11,10 @@ class FirestoreService {
   Future<void> createGroup(Group group) async {
     await _firestore.collection("groups").add(group.toJson());
   }
+
+  Future<List<Group>> getAllGroups() async {
+    final groupsDoc = await _firestore.collection("groups").get();
+
+    return groupsDoc.docs.map((group) => Group.fromMap(group.data())).toList();
+  }
 }

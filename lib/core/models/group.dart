@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Group {
-  final String id;
   final String title;
   final String emoji;
   final String description;
@@ -17,7 +16,6 @@ class Group {
   final LatLng location;
 
   Group({
-    required this.id,
     required this.title,
     required this.emoji,
     required this.description,
@@ -47,7 +45,6 @@ class Group {
 
   factory Group.fromMap(Map<String, dynamic> map) {
     return Group(
-      id: map['id'],
       title: map['title'],
       emoji: map["emoji"],
       description: map['description'],

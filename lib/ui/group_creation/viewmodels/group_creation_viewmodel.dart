@@ -40,7 +40,6 @@ class GroupCreationViewModel extends BaseViewModel {
   Future<void> submit() async {
     setBusy(true);
     final group = Group(
-      id: "",
       emoji: emoji,
       title: title,
       description: description,
