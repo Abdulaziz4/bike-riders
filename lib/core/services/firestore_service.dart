@@ -17,4 +17,13 @@ class FirestoreService {
 
     return groupsDoc.docs.map((group) => Group.fromMap(group.data())).toList();
   }
+
+  Future<List<Group>> getUserGroups(String userId) async {
+    final groupsDoc = await _firestore
+        .collection("groups")
+        .where("uid", isEqualTo: userId)
+        .get();
+
+    return groupsDoc.docs.map((group) => Group.fromMap(group.data())).toList();
+  }
 }
