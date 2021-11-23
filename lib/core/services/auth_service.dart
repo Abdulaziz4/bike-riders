@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stacked/stacked.dart';
 
 class AuthService with ReactiveServiceMixin {
-  late PushNotificationService _messagingService;
   final _firebaseAuth = FirebaseAuth.instance;
 
   final _logger = getLogger("AuthService");
@@ -14,7 +13,6 @@ class AuthService with ReactiveServiceMixin {
   final ReactiveValue<User?> _user = ReactiveValue<User?>(null);
 
   void initlizeAuth() {
-    _messagingService = locator<PushNotificationService>();
     _user.value = _firebaseAuth.currentUser;
   }
 
@@ -57,7 +55,6 @@ class AuthService with ReactiveServiceMixin {
         password: password,
       );
       final success = authRes.user != null;
-      await _messagingService.requestAndSubscribeNotification();
 
       return success;
     } on FirebaseAuthException catch (exp) {
