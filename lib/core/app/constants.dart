@@ -8,6 +8,16 @@ const kAltColor = Color(0xFF4CCFAC);
 const kPurpleColor = Color(0xFF7E8CE0);
 const kRedColor = Color(0xFFF59078);
 final kInputColor = brighten(Color(0xFF262833), 15);
+final kDecorationColors = [
+  Color(0xFFAFE496),
+  Color(0xFFE3E496),
+  Colors.blue[300],
+];
+final kDetailsChipColors = [
+  Color(0xFF7E8CE0),
+  Color(0xFFF59078),
+  Color(0xFFFFAE5F),
+];
 // Sizes
 const kDefaultPadding = 20.0;
 

@@ -11,7 +11,7 @@ class GroupItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120,
+      height: 110,
       decoration: BoxDecoration(
         color: brighten(kPrimaryColor, 20),
         borderRadius: BorderRadius.circular(12),
@@ -27,7 +27,7 @@ class GroupItem extends StatelessWidget {
                 topLeft: Radius.circular(11),
                 bottomLeft: Radius.circular(11),
               ),
-              color: Colors.blue,
+              color: (kDecorationColors.toList()..shuffle()).first,
             ),
           ),
           Expanded(
@@ -88,7 +88,7 @@ class GroupItem extends StatelessWidget {
       // height: 25,
       margin: const EdgeInsets.only(right: kDefaultPadding / 2),
       decoration: BoxDecoration(
-        color: Colors.red[300],
+        color: (kDetailsChipColors.toList()..shuffle()).first,
         borderRadius: BorderRadius.circular(20),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
