@@ -5,10 +5,13 @@ class PushNotificationService {
   final _logger = getLogger("PushNotificationService");
   late FirebaseMessaging _messaging;
 
-  void requestPermission() async {
+  Future<void> requestAndSubscribeNotification() async {
     _logger.i("requestPermission");
     _messaging = FirebaseMessaging.instance;
-    await _messaging.requestPermission();
-    print(await _messaging.getAPNSToken());
+    final per = await _messaging.requestPermission();
+
+    await _messaging.subscribeToTopic("groups");
+    print(per.authorizationStatus);
+    print(await _messaging.getToken());
   }
 }

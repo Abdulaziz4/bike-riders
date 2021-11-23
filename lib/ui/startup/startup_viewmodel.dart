@@ -14,6 +14,9 @@ class StartupViewModel extends BaseViewModel {
 
     final _authSerivce = locator<AuthService>();
     _authSerivce.initlizeAuth();
+
+    // final _notService = locator<PushNotificationService>();
+    // await _notService.requestPermission();
     if (_authSerivce.isLogedIn()) {
       _navigationService.replaceWith(Routes.navigationBarController);
     } else {

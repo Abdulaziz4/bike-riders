@@ -57,7 +57,7 @@ class AuthService with ReactiveServiceMixin {
         password: password,
       );
       final success = authRes.user != null;
-      _messagingService.requestPermission();
+      await _messagingService.requestAndSubscribeNotification();
 
       return success;
     } on FirebaseAuthException catch (exp) {
