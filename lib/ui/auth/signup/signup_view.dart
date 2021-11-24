@@ -41,53 +41,55 @@ class _SignupViewState extends State<SignupView> {
         child: Scaffold(
           body: Form(
             key: viewmodel.formKey,
-            child: Column(
-              children: [
-                AuthenticationHeader(text: "Create\nAccount"),
-                Spacer(),
-                InputField(
-                  hint: "Email",
-                  validator: Validator.emailValidator,
-                  onSave: viewmodel.setEmail,
-                  horizantolMargin: kDefaultPadding * 1.5,
-                ),
-                InputField(
-                  hint: "Password",
-                  obscureText: true,
-                  validator: Validator.passwordValidator,
-                  controller: _controller,
-                  onSave: viewmodel.setPassword,
-                  horizantolMargin: kDefaultPadding * 1.5,
-                ),
-                InputField(
-                  hint: "Confirm Password",
-                  validator: (cPass) {
-                    return Validator.confirmPasswordValidator(
-                      _controller.text,
-                      cPass,
-                    );
-                  },
-                  obscureText: true,
-                  onSave: (_) {},
-                  horizantolMargin: kDefaultPadding * 1.5,
-                ),
-                SizedBox(
-                  height: kDefaultPadding * 2,
-                ),
-                AuthErrorMessage(message: viewmodel.errorMessage),
-                CustomButton(
-                  text: "Create Account",
-                  onPress: viewmodel.validateAndSubmitSignupForm,
-                  size: const Size(200, 50),
-                  textStyle: TextStyle(fontSize: 19.5),
-                ),
-                Spacer(),
-                AuthenticationInstructions(
-                  buttonText: "Log in",
-                  hintText: "Already have an account ?",
-                  onPressed: viewmodel.navigateToLogin,
-                ),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  AuthenticationHeader(text: "Create\nAccount"),
+                  // Spacer(),
+                  InputField(
+                    hint: "Email",
+                    validator: Validator.emailValidator,
+                    onSave: viewmodel.setEmail,
+                    horizantolMargin: kDefaultPadding * 1.5,
+                  ),
+                  InputField(
+                    hint: "Password",
+                    obscureText: true,
+                    validator: Validator.passwordValidator,
+                    controller: _controller,
+                    onSave: viewmodel.setPassword,
+                    horizantolMargin: kDefaultPadding * 1.5,
+                  ),
+                  InputField(
+                    hint: "Confirm Password",
+                    validator: (cPass) {
+                      return Validator.confirmPasswordValidator(
+                        _controller.text,
+                        cPass,
+                      );
+                    },
+                    obscureText: true,
+                    onSave: (_) {},
+                    horizantolMargin: kDefaultPadding * 1.5,
+                  ),
+                  SizedBox(
+                    height: kDefaultPadding * 2,
+                  ),
+                  AuthErrorMessage(message: viewmodel.errorMessage),
+                  CustomButton(
+                    text: "Create Account",
+                    onPress: viewmodel.validateAndSubmitSignupForm,
+                    size: const Size(200, 50),
+                    textStyle: TextStyle(fontSize: 19.5),
+                  ),
+                  // Spacer(),
+                  AuthenticationInstructions(
+                    buttonText: "Log in",
+                    hintText: "Already have an account ?",
+                    onPressed: viewmodel.navigateToLogin,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -16,7 +16,7 @@ class AuthenticationInstructions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
+      padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
       child: Column(
         children: [
           Text(

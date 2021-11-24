@@ -2,6 +2,8 @@ import 'package:bike_riders/core/app/constants.dart';
 import 'package:bike_riders/ui/groups/components/group_item.dart';
 import 'package:bike_riders/ui/profile/components/user_info.dart';
 import 'package:bike_riders/ui/profile/profile_viewmodel.dart';
+import 'package:bike_riders/ui/shared/custom_progress_indicator.dart';
+import 'package:bike_riders/ui/shared/no_groups_warning.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -38,18 +40,24 @@ class ProfileView extends StatelessWidget {
                   ),
                 ],
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: kDefaultPadding / 1.5),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: viewmodel.groups
-                          .map((group) => GroupItem(group: group))
-                          .toList(),
+              if (viewmodel.isBusy) CustomProgressIndicator(),
+              if (viewmodel.groups.isEmpty && !viewmodel.isBusy)
+                Expanded(
+                  child: NoGroupsWarning(),
+                ),
+              if (viewmodel.groups.isNotEmpty)
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: kDefaultPadding / 1.5),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: viewmodel.groups
+                            .map((group) => GroupItem(group: group))
+                            .toList(),
+                      ),
                     ),
                   ),
                 ),
-              ),
             ],
           ),
         ),

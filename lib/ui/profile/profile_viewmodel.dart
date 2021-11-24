@@ -13,6 +13,7 @@ class ProfileViewModel extends BaseViewModel {
     setBusy(true);
     final uid = _authService.user!.uid;
     groups = await _firestoreService.getUserGroups(uid);
+    print(uid);
     setBusy(false);
   }
 

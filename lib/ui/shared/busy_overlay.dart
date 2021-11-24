@@ -1,6 +1,7 @@
-import 'package:bike_riders/core/app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import 'package:bike_riders/core/app/constants.dart';
 
 class BusyOverlay extends StatefulWidget {
   final bool isBusy;
