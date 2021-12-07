@@ -51,6 +51,8 @@ dependencies:
   syncfusion_flutter_sliders: ^19.3.48
   syncfusion_flutter_core: ^19.3.48
   http: ^0.13.4
+  rxdart: ^0.27.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

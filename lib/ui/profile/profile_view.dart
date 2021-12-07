@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+
 import 'package:bike_riders/core/app/constants.dart';
 import 'package:bike_riders/ui/groups/components/group_item.dart';
 import 'package:bike_riders/ui/profile/components/user_info.dart';
 import 'package:bike_riders/ui/profile/profile_viewmodel.dart';
 import 'package:bike_riders/ui/shared/custom_progress_indicator.dart';
 import 'package:bike_riders/ui/shared/no_groups_warning.dart';
-import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -14,7 +15,6 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ProfileViewModel>.reactive(
       viewModelBuilder: () => ProfileViewModel(),
-      onModelReady: (model) => model.fetchUserGroups(),
       builder: (context, viewmodel, _) => SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
