@@ -29,6 +29,12 @@ class ProfileViewModel extends StreamViewModel<List<Group>> {
 
   String getUserEmail() => _authService.user!.email!;
 
+  Future<void> deleteGroup(String id) async {
+    setBusy(true);
+    await _firestoreService.deleteGroup(id);
+    setBusy(false);
+  }
+
   @override
   void onData(List<Group>? newGroups) {
     super.onData(data);

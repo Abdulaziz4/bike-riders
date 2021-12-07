@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Group {
+  final String id;
   final String title;
   final String emoji;
   final String description;
@@ -18,6 +19,7 @@ class Group {
   final String address;
 
   Group({
+    required this.id,
     required this.title,
     required this.emoji,
     required this.description,
@@ -49,8 +51,9 @@ class Group {
     };
   }
 
-  factory Group.fromMap(Map<String, dynamic> map) {
+  factory Group.fromMap(Map<String, dynamic> map, String id) {
     return Group(
+      id: id,
       title: map['title'],
       emoji: map["emoji"],
       description: map['description'],
@@ -66,7 +69,7 @@ class Group {
     );
   }
 
-  factory Group.fromJson(String source) => Group.fromMap(json.decode(source));
+  // factory Group.fromJson(String source) => Group.fromMap(json.decode(source));
 
   static TimeOfDay stringToTimeOfDay(String tod) {
     return TimeOfDay(

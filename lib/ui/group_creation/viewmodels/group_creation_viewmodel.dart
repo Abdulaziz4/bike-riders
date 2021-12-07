@@ -44,6 +44,7 @@ class GroupCreationViewModel extends BaseViewModel {
         LocationHelper.generateLocationPreviewImage(location: location!);
     String address = await LocationHelper.addressFromLatLong(location!);
     final group = Group(
+        id: "",
         emoji: emoji,
         title: title,
         description: description,

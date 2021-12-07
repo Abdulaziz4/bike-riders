@@ -22,8 +22,9 @@ class FirestoreService {
     final snapshot = _firestore.collection("groups").snapshots();
 
     snapshot.listen((list) {
-      List<Group> groups =
-          list.docs.map((group) => Group.fromMap(group.data())).toList();
+      List<Group> groups = list.docs
+          .map((group) => Group.fromMap(group.data(), group.id))
+          .toList();
       groupsController.add(groups);
     });
     return groupsController.stream;
@@ -39,8 +40,9 @@ class FirestoreService {
         .snapshots();
 
     snapshot.listen((list) {
-      List<Group> groups =
-          list.docs.map((group) => Group.fromMap(group.data())).toList();
+      List<Group> groups = list.docs
+          .map((group) => Group.fromMap(group.data(), group.id))
+          .toList();
       groupsController.add(groups);
     });
     return groupsController.stream;
@@ -50,7 +52,9 @@ class FirestoreService {
   Future<List<Group>> getAllGroups() async {
     final groupsDoc = await _firestore.collection("groups").get();
 
-    return groupsDoc.docs.map((group) => Group.fromMap(group.data())).toList();
+    return groupsDoc.docs
+        .map((group) => Group.fromMap(group.data(), group.id))
+        .toList();
   }
 
   Future<List<Group>> getUserGroups(String userId) async {
@@ -59,6 +63,12 @@ class FirestoreService {
         .where("uid", isEqualTo: userId)
         .get();
 
-    return groupsDoc.docs.map((group) => Group.fromMap(group.data())).toList();
+    return groupsDoc.docs
+        .map((group) => Group.fromMap(group.data(), group.id))
+        .toList();
+  }
+
+  Future<void> deleteGroup(String id) async {
+    await _firestore.collection("groups").doc(id).delete();
   }
 }

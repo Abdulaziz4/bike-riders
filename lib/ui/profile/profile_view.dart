@@ -52,7 +52,14 @@ class ProfileView extends StatelessWidget {
                     child: SingleChildScrollView(
                       child: Column(
                         children: viewmodel.groups
-                            .map((group) => GroupItem(group: group))
+                            .map((group) => Dismissible(
+                                  key: Key(group.date.toIso8601String()),
+                                  background: buildSwipeIndicator(),
+                                  confirmDismiss: (direction) async {
+                                    await viewmodel.deleteGroup(group.id);
+                                  },
+                                  child: GroupItem(group: group),
+                                ))
                             .toList(),
                       ),
                     ),
@@ -61,6 +68,22 @@ class ProfileView extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Container buildSwipeIndicator() {
+    return Container(
+      color: Colors.red,
+      margin: const EdgeInsets.only(
+        top: 2,
+        bottom: 15,
+      ),
+      padding: const EdgeInsets.only(right: kDefaultPadding),
+      alignment: Alignment.centerRight,
+      child: Icon(
+        Icons.delete,
+        color: Colors.white,
       ),
     );
   }
