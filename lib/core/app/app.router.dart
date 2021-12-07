@@ -16,9 +16,11 @@ import '../../ui/auth/onboarding/onboarding_view.dart';
 import '../../ui/auth/signup/signup_view.dart';
 import '../../ui/group_creation/components/location_picker.dart';
 import '../../ui/group_creation/group_creation_view.dart';
+import '../../ui/group_details/group_details_view.dart';
 import '../../ui/groups/groups_view.dart';
 import '../../ui/nav_bar/navigation_bar.dart';
 import '../../ui/startup/startup_view.dart';
+import '../models/group.dart';
 
 class Routes {
   static const String startupView = '/';
@@ -29,6 +31,7 @@ class Routes {
   static const String groupsView = '/groups-view';
   static const String groupCreationView = '/group-creation-view';
   static const String locationPickerView = '/location-picker-view';
+  static const String groupDetailsView = '/group-details-view';
   static const all = <String>{
     startupView,
     onBoardingView,
@@ -38,6 +41,7 @@ class Routes {
     groupsView,
     groupCreationView,
     locationPickerView,
+    groupDetailsView,
   };
 }
 
@@ -53,6 +57,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.groupsView, page: GroupsView),
     RouteDef(Routes.groupCreationView, page: GroupCreationView),
     RouteDef(Routes.locationPickerView, page: LocationPickerView),
+    RouteDef(Routes.groupDetailsView, page: GroupDetailsView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -111,6 +116,16 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    GroupDetailsView: (data) {
+      var args = data.getArgs<GroupDetailsViewArguments>(nullOk: false);
+      return MaterialPageRoute<MaterialRoute<dynamic>>(
+        builder: (context) => GroupDetailsView(
+          key: args.key,
+          group: args.group,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -123,4 +138,11 @@ class LocationPickerViewArguments {
   final Key? key;
   final LatLng? initialPosition;
   LocationPickerViewArguments({this.key, this.initialPosition});
+}
+
+/// GroupDetailsView arguments holder class
+class GroupDetailsViewArguments {
+  final Key? key;
+  final Group group;
+  GroupDetailsViewArguments({this.key, required this.group});
 }

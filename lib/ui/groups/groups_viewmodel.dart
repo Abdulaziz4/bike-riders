@@ -33,12 +33,6 @@ class GroupsViewModel extends StreamViewModel<List<Group>> {
 
   List<Group> groups = [];
 
-  Future<void> fetchGroups() async {
-    setBusy(true);
-    groups = await _firestoreService.getAllGroups();
-    setBusy(false);
-  }
-
   void logout() {
     _authService.logout();
     _navService.replaceWith(Routes.onBoardingView);

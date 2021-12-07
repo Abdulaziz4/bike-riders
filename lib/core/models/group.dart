@@ -14,6 +14,8 @@ class Group {
   final TimeOfDay startTime;
   final TimeOfDay endTime;
   final LatLng location;
+  final String locationPreview;
+  final String address;
 
   Group({
     required this.title,
@@ -26,6 +28,8 @@ class Group {
     required this.startTime,
     required this.endTime,
     required this.location,
+    required this.address,
+    required this.locationPreview,
   });
 
   Map<String, dynamic> toJson() {
@@ -40,6 +44,8 @@ class Group {
       'startTime': timeOfDayToString(startTime),
       'endTime': timeOfDayToString(endTime),
       'location': location.toJson(),
+      'address': address,
+      'locationPreview': locationPreview,
     };
   }
 
@@ -55,6 +61,8 @@ class Group {
       startTime: stringToTimeOfDay(map['startTime']),
       endTime: stringToTimeOfDay(map['endTime']),
       location: LatLng.fromJson(map['location'])!,
+      address: map["address"],
+      locationPreview: map["locationPreview"],
     );
   }
 

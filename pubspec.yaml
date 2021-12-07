@@ -52,7 +52,7 @@ dependencies:
   syncfusion_flutter_core: ^19.3.48
   http: ^0.13.4
   rxdart: ^0.27.1
-
+  url_launcher: ^6.0.17
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -19,11 +19,15 @@ class LocationHelper {
     }
   }
 
+  static String mapLocationUrlFromLatLng(LatLng location) {
+    return "https://maps.google.com/maps?q=${location.latitude},${location.longitude}";
+  }
+
   // Accepts lat and long and return human readable address
   static Future<String> addressFromLatLong(LatLng location) async {
     try {
       final url =
-          "https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&language=ar&key=$mapsApiKey";
+          "https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&language=en&key=$mapsApiKey";
       final results = await http.get(Uri.parse(url));
       final Map<String, dynamic> extractedData = json.jsonDecode(results.body);
 
@@ -56,4 +60,6 @@ class LocationHelper {
       "previewUrl": generateLocationPreviewImage(location: location),
     };
   }
+// check status code
+
 }

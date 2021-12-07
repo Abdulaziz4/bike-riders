@@ -15,7 +15,6 @@ class GroupsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<GroupsViewModel>.reactive(
         viewModelBuilder: () => GroupsViewModel(),
-        onModelReady: (model) => model.fetchGroups(),
         builder: (context, viewmodel, _) {
           return SafeArea(
             child: Scaffold(

@@ -1,3 +1,4 @@
+import 'package:bike_riders/core/app/utils/location_helper.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -39,18 +40,22 @@ class GroupCreationViewModel extends BaseViewModel {
 
   Future<void> submit() async {
     setBusy(true);
+    String lcoationPreview =
+        LocationHelper.generateLocationPreviewImage(location: location!);
+    String address = await LocationHelper.addressFromLatLong(location!);
     final group = Group(
-      emoji: emoji,
-      title: title,
-      description: description,
-      level: level!,
-      participents: participentsNumber,
-      distance: distance,
-      date: date!,
-      startTime: startTime,
-      endTime: endTime,
-      location: location!,
-    );
+        emoji: emoji,
+        title: title,
+        description: description,
+        level: level!,
+        participents: participentsNumber,
+        distance: distance,
+        date: date!,
+        startTime: startTime,
+        endTime: endTime,
+        location: location!,
+        address: address,
+        locationPreview: lcoationPreview);
     await _firestoreService.createGroup(group);
     _navService.back();
     setBusy(false);

@@ -1,9 +1,13 @@
+import 'package:bike_riders/core/app/app.locator.dart';
+import 'package:bike_riders/core/app/app.router.dart';
+import 'package:bike_riders/ui/shared/emoji_ring.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:bike_riders/core/app/constants.dart';
 import 'package:bike_riders/core/app/utils/colors_helper.dart';
 import 'package:bike_riders/core/models/group.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class GroupItem extends StatelessWidget {
   final Group group;
@@ -11,82 +15,89 @@ class GroupItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 110,
-      decoration: BoxDecoration(
-        color: brighten(kPrimaryColor, 20),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      margin: const EdgeInsets.only(bottom: kDefaultPadding / 1.5),
-      child: Row(
-        children: [
-          Container(
-            height: double.maxFinite,
-            width: 10,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(11),
-                bottomLeft: Radius.circular(11),
+    return GestureDetector(
+      onTap: () {
+        locator<NavigationService>().navigateTo(
+          Routes.groupDetailsView,
+          arguments: GroupDetailsViewArguments(group: group),
+        );
+      },
+      child: Container(
+        height: 110,
+        decoration: BoxDecoration(
+          color: brighten(kPrimaryColor, 20),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        margin: const EdgeInsets.only(bottom: kDefaultPadding / 1.5),
+        child: Row(
+          children: [
+            Container(
+              height: double.maxFinite,
+              width: 10,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(11),
+                  bottomLeft: Radius.circular(11),
+                ),
+                color: (kDecorationColors.toList()..shuffle()).first,
               ),
-              color: (kDecorationColors.toList()..shuffle()).first,
             ),
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                buildEmojiRing(),
-                Expanded(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 8.0, bottom: 8, right: 5),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          group.title,
-                          style: kMediumText.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 0.0),
-                          child: Text(
-                            group.description,
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              overflow: TextOverflow.ellipsis,
+            Expanded(
+              child: Row(
+                children: [
+                  buildEmojiRing(),
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(top: 8.0, bottom: 8, right: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            group.title,
+                            style: kMediumText.copyWith(
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                        ),
-                        Row(
-                          children: [
-                            buildDetailsChip(
-                              group.distance.toStringAsFixed(2) + " KM",
-                              "assets/icons/road_icon.svg",
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 0.0),
+                            child: Text(
+                              group.description,
+                              maxLines: 2,
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
-                            buildDetailsChip(
-                                group.level, "assets/icons/speometer_icon.svg"),
-                            // buildDetailsChip(),
-                          ],
-                        ),
-                      ],
+                          ),
+                          Row(
+                            children: [
+                              buildDetailsChip(
+                                group.distance.toStringAsFixed(2) + " KM",
+                                "assets/icons/road_icon.svg",
+                              ),
+                              buildDetailsChip(group.level,
+                                  "assets/icons/speometer_icon.svg"),
+                              // buildDetailsChip(),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   Container buildDetailsChip(String text, String icon) {
     return Container(
-      // height: 25,
       margin: const EdgeInsets.only(right: kDefaultPadding / 2),
       decoration: BoxDecoration(
         color: (kDetailsChipColors.toList()..shuffle()).first,
@@ -117,26 +128,9 @@ class GroupItem extends StatelessWidget {
     );
   }
 
-  Container buildEmojiRing() {
-    return Container(
-      margin: const EdgeInsets.only(
-        right: kDefaultPadding / 3,
-        left: 6,
-      ),
-      height: 65,
-      width: 65,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(
-          width: 7,
-          color: kPurpleColor,
-        ),
-      ),
-      alignment: Alignment.center,
-      child: Text(
-        group.emoji,
-        style: TextStyle(fontSize: 30),
-      ),
+  Widget buildEmojiRing() {
+    return EmojiRing(
+      emoji: group.emoji,
     );
   }
 }
