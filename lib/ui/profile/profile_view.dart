@@ -26,6 +26,7 @@ class ProfileView extends StatelessWidget {
             children: [
               UserInfo(
                 email: viewmodel.getUserEmail(),
+                onLogout: viewmodel.logout,
               ),
               SizedBox(
                 height: kDefaultPadding,

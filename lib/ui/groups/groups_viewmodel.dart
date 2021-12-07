@@ -20,10 +20,10 @@ import 'package:bike_riders/core/services/firestore_service.dart';
 //     setBusy(false);
 //   }
 
-//   void logout() {
-//     _authService.logout();
-//     _navService.replaceWith(Routes.onBoardingView);
-//   }
+// void logout() {
+//   _authService.logout();
+//   _navService.replaceWith(Routes.onBoardingView);
+// }
 // }
 
 class GroupsViewModel extends StreamViewModel<List<Group>> {

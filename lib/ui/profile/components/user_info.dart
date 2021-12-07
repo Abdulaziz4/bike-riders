@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class UserInfo extends StatelessWidget {
   final String email;
-  const UserInfo({Key? key, required this.email}) : super(key: key);
+  final void Function() onLogout;
+  const UserInfo({Key? key, required this.email, required this.onLogout})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class UserInfo extends StatelessWidget {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   primary: Color(0xffF59078), fixedSize: Size(120, 30)),
-              onPressed: () {},
+              onPressed: onLogout,
               child: Text(
                 'Logout',
                 style: TextStyle(color: Colors.white),
